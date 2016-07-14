@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "bcdfa4697e5cf321bb2d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2d5d8c1b8ac411c265f3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -583,8 +583,18 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	(function webpackMissingModule() { throw new Error("Cannot find module \"./src/js/application.js\""); }());
+	module.exports = __webpack_require__(1);
 
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	console.log('testing');
+
+	console.log('changing test');
 
 /***/ }
 /******/ ]);

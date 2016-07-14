@@ -9,13 +9,12 @@ const path = require('path');
 
 const config = {
 
-		context: path.resolve(__dirname, "src"),
+		context: path.resolve(__dirname, 'src'),
 		entry: {
-			//app	 : ['./js/application.js']
-			app : ['./test.js']
+			app	 : ['./js/application.js']
 		},
 		output: {
-			path: path.resolve(__dirname, "build"),
+			path: path.resolve(__dirname, 'build'),
 			filename: '[name].js',
 			publicPath: '/'
 		},
