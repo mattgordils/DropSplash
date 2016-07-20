@@ -4,6 +4,7 @@ $primary-color: #16E1B9;
 $light-grey: #f5f5f5;
 $text-color : #333;
 $black : #000;
+$white : #fff;
 $light-text-color : #aaa;
 $hr-color : $text-color;
 $hr-styles : 2px solid $hr-color;
@@ -45,12 +46,15 @@ $select-bg : transparent;
 $select-color : $light-text-color;
 
 // Buttons
-$btn-height: 60px;
-  $btn-medium-height: 50px;
-    $btn-tiny-height: 30px;
+$btn-height: 50px;
+  $btn-large-height: 60px;
+	  $btn-medium-height: 40px;
+	    $btn-tiny-height: 30px;
 $btn-padding: 0px 15px 0px 15px;
-  $btn-medium-padding: 0px 15px 0px 15px;
-    $btn-tiny-padding: 0px 15px 0px 15px;
+  $btn-large-padding: 0px 15px 0px 15px;
+	  $btn-medium-padding: 0px 15px 0px 15px;
+	    $btn-tiny-padding: 0px 15px 0px 15px;
+
 // Default Button
 $btn-border: 1px solid $primary-color;
 $btn-bg : $primary-color;

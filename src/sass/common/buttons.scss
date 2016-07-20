@@ -22,7 +22,6 @@ button {
   padding: $btn-padding;
   margin: 0px;
   font-family: $main-font;
-  font-size: 1em;
   font-weight: 400;
   cursor: pointer;
   line-height: $btn-height - 4px;
@@ -51,10 +50,27 @@ button {
     }
   }
 
+  &.large {
+    height: $btn-large-height;
+    padding: $btn-large-padding;
+    line-height: $btn-large-height - 4px;
+    font-size: 12px;
+    .icon {
+      svg {
+        height: $btn-large-height - 2px;
+      }
+    }
+    &.circle {
+      height: $btn-large-height;
+      width: $btn-large-height;
+    }
+  }
+
   &.medium {
+    font-size: 10px;
     height: $btn-medium-height;
     padding: $btn-medium-padding;
-    line-height: $btn-medium-height - 4px;
+    line-height: $btn-medium-height - 0px;
     .icon {
       svg {
         height: $btn-medium-height - 2px;
@@ -260,6 +276,37 @@ button {
           fill: $tertiary-btn-hover-color;
         }
       }
+    }
+  }
+}
+
+// Button Groups
+.button-group {
+  display: inline-block;
+  &.three-buttons button {
+    width: 33.333%;
+  }
+  &.four-buttons button {
+    width: 25%;
+  }
+  button {
+    width: 50%;
+    background: rgba($black, .4);
+    color: $white;
+    border-color: transparent;
+    border-right: 1px solid rgba($white, .3);
+    &:hover {
+      background-color: $black;
+      border-color: transparent;
+      color: $white;
+    }
+    border-radius: 0;
+    &:first-child {
+      border-radius: 50px 0 0 50px;
+    }
+    &:last-child {
+      border-radius: 0 50px 50px 0;
+      border-right-color: transparent;
     }
   }
 }

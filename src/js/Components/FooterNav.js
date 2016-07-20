@@ -12,7 +12,7 @@ export default class App extends Component {
 		return (
 			<div className="footer-nav">
 				<div className="left-items">
-					<a href="#"><PlusIcon />Settings</a>
+					<div className="link"><PlusIcon />Settings</div>
 				</div>
 				<div className="center-items">
 					<Button
@@ -23,7 +23,7 @@ export default class App extends Component {
 					/>
 				</div>
 				<div className="right-items">
-					<a href="#">Preview<PlusIcon /></a>
+					<div className="link">Preview<PlusIcon /></div>
 				</div>		
 			</div>
 		)

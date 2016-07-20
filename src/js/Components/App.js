@@ -95,9 +95,28 @@ export default class App extends Component {
 						{...this.props}
 					/>
 
-					<Pane
-						className=""
-					/>
+					<Pane />
+
+					<div className="button-group three-buttons">
+						<Button
+							className="medium"
+							label="button in group"
+							icon={PlusIcon}
+							{...this.props}
+						/>
+						<Button
+							className="medium medium"
+							label="button in group"
+							icon={PlusIcon}
+							{...this.props}
+						/>
+						<Button
+							className="medium"
+							label="button in group"
+							icon={PlusIcon}
+							{...this.props}
+						/>
+					</div>
 
 				</div>
 
