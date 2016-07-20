@@ -1,4 +1,4 @@
-@import 'common/variables';
+@import 'setup/variables';
 
 $pane-bg : #fff;
 $base-border-radius : 3px;
@@ -144,5 +144,45 @@ $pane-line-color: #e5e5e5;
 		} // end .new-content-grid
 		
 	} // end .ds-pane-content
+
+	// Next Transition
+	.pane-next-transition-enter {
+	  opacity: 0.01;
+	  position: absolute;
+	  transition: opacity .5s ease-in;
+	}
+
+	.pane-next-transition-enter.pane-next-transition-enter-active {
+	  opacity: 1;
+	  position: absolute;
+	}
+
+	.pane-next-transition-leave {
+		opacity: 1;
+		transition: opacity .5s ease-in;
+	}
+
+	.pane-next-transition-leave.pane-next-transition-leave-active {
+		opacity: 1;
+	}
+
+	// Prev Transition
+	.pane-prev-transition-enter {
+	  opacity: 0.01;
+	}
+
+	.pane-prev-transition-enter.pane-prev-transition-enter-active {
+	  opacity: 1;
+	  transition: opacity 500ms ease-in;
+	}
+
+	.pane-prev-transition-leave {
+	  opacity: 1;
+	}
+
+	.pane-prev-transition-leave.pane-prev-transition-leave-active {
+	  opacity: 0.01;
+	  transition: opacity 300ms ease-in;
+	}
 
 } // end .ds-pane

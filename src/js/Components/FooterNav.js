@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-import Button from 'Components/Button';
-import PlusIcon from 'Icons/PlusIcon';
+import Button from 'Components/Common/Button';
+import PlusIcon from 'assets/icons/plus-icon';
+import InlineSVG from 'svg-inline-react/lib';
 
-import 'sass/common/footer-nav';
+import 'sass/components/footer-nav';
 
 export default class App extends Component {
 
@@ -12,20 +13,20 @@ export default class App extends Component {
 		return (
 			<div className="footer-nav">
 				<div className="left-items">
-					<div className="link"><PlusIcon />Settings</div>
+					<div className="link"><InlineSVG src={PlusIcon} element="span" className="icon" />Settings</div>
 				</div>
 				<div className="center-items">
 					<Button
-						className="tiny"
+						buttonClass="tiny"
 						label="Add Page Section"
 						icon={PlusIcon}
-						{...this.props}
 					/>
 				</div>
 				<div className="right-items">
-					<div className="link">Preview<PlusIcon /></div>
+					<div className="link">Preview<InlineSVG src={PlusIcon} element="span" className="icon" /></div>
 				</div>		
 			</div>
-		)
+		);
+		
 	}
 }

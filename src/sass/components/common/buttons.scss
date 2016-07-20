@@ -1,4 +1,5 @@
-@import 'common/variables';
+@import 'setup/variables';
+@import 'setup/animations';
 
 .button,
 input[type="submit"],
@@ -44,6 +45,7 @@ button {
     }
     svg {
       height: $btn-height - 2px;
+      width: 14px;
       * {
         fill: $btn-color;
       }

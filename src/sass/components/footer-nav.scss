@@ -1,5 +1,6 @@
-@import 'common/variables';
-@import 'common/mixins';
+@import 'setup/mixins';
+@import 'setup/variables';
+@import 'setup/typography';
 
 .footer-nav {
 	background: $black;
@@ -38,6 +39,7 @@
 				display: inline-block;
 				vertical-align: top;
 				svg {
+					width: 14px;
 					height: 50px;
 					line-height: 0;
 					* {
@@ -65,7 +67,7 @@
 	.center-items {
 		text-align: center;
 		.button {
-			max-width: 175px;
+			max-width: 185px;
 		}
 	}
 }

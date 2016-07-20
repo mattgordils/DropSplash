@@ -1,5 +1,4 @@
-import 'sass/reset';
-import 'sass/common/variables';
+import 'sass/setup/reset';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
