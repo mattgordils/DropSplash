@@ -1,0 +1,31 @@
+@import 'common/variables';
+@import 'common/mixins';
+
+.footer-nav {
+	background: $black;
+	height: 50px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	@include clearfix();
+	.left-items,
+	.right-items,
+	.center-items {
+		float: left;
+		height: 50px;
+		width: 33.333%;
+		.button {
+			margin: 10px 5px;
+		}
+	}
+	.left-items {
+		text-align: left;
+	}
+	.right-items {
+		text-align: right;
+	}
+	.center-items {
+		text-align: center;
+	}
+}

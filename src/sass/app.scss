@@ -1,0 +1,32 @@
+@import 'common/variables';
+@import 'common/mixins';
+@import 'common/typography';
+@import 'common/animations';
+
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+img {
+  vertical-align: top;
+  max-width: 100%;
+}
+
+svg, svg * {
+  transition: all $med-speed $ease;
+}
+
+.app-content {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 50px;
+	left: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+}

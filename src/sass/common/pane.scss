@@ -1,0 +1,148 @@
+@import 'common/variables';
+
+$pane-bg : #fff;
+$base-border-radius : 3px;
+$pane-line-color: #e5e5e5;
+
+.ds-pane {
+	font-family: $main-font;
+	display: inline-block;
+	vertical-align: top;
+	min-width: 40px;
+	max-width: 350px;
+	min-height: 40px;
+	background: $pane-bg;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+	border-radius: $base-border-radius;
+	width: 272px;
+
+	.ds-pane-header {
+		position: relative;
+		border-bottom: 1px solid $pane-line-color;
+		height: 50px;
+		.pane-title {
+			display: block;
+			position: absolute;
+			left: 45px;
+			right: 45px;
+			text-align: center;
+			font-size: 16px;
+			line-height: 51px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			letter-spacing: .025em;
+		}
+		.icon {
+			stroke-color: red;
+			position: absolute;
+			padding: 18px 15px 19px;
+			left: 0;
+			height: 50px;
+			cursor: pointer;
+			opacity: .4;
+			transition: opacity $med-speed ease-in-out;
+			&.right {
+				left: auto;
+				right: 0;
+			}
+			&:hover {
+				opacity: 1;
+			}
+			svg {
+				height: 12px;
+				max-width: 30px;
+				vertical-align: top;
+				* {
+					stroke-width: 2px;
+					stroke-linecap: butt;
+				}
+			}
+		}
+	} // end .ds-pane-header
+	
+	.ds-pane-tabs {
+		height: 35px;
+		background: $light-grey;
+		text-align: left;
+		.tab {
+			display: inline-block;
+			line-height: 34px;
+			width: 33.333%;
+			margin-right: -4px;
+			text-align: center;
+			border-bottom: 1px solid $pane-line-color;
+			color: $light-text-color;
+			font-size: 14px;
+			cursor: pointer;
+			transition: color $med-speed ease-in-out, background $med-speed ease-in-out, border $med-speed ease-in-out;
+			&:hover {
+				color: $text-color;
+			}
+			&.active {
+				background: $pane-bg;
+				color: $text-color;
+				border-bottom-color: $primary-color;
+			}
+		}
+	} // end .ds-pane-tabs
+	
+	.ds-pane-content {
+		display: block;
+		min-height: 40px;
+		overflow-x: hidden;
+		overflow-y: auto;
+
+		.new-content-grid {
+			overflow: hidden;
+			border-radius: 0 0 $base-border-radius $base-border-radius;
+			.content-item {
+				width: 90px;
+				height: 71px;
+				border-right: 1px solid $pane-line-color;
+				border-bottom: 1px solid $pane-line-color;
+				float: left;
+				transition: background $med-speed ease-in-out;
+				cursor: pointer;
+				box-sizing: content-box;
+				> * {
+					opacity: .45;
+				}
+				&:nth-last-child(-n+3) {
+					border-bottom: none;
+				}
+				&:nth-child(3n+3) {
+					border-right: none;
+					margin-right: 0;
+				}
+				&:hover {
+					background-color: $light-grey;
+					* {
+						opacity: 1;
+					}
+				}
+				&:active {
+					background-color: darken($light-grey, 5%);
+				}
+				.icon {
+					display: block;
+					text-align: center;
+					margin: 17px auto 8px;
+					transition: opacity $med-speed ease-in-out;
+					svg {
+						vertical-align: top;
+					}
+				}
+				.label {
+					display: block;
+					text-align: center;
+					font-size: 12px;
+					letter-spacing: .02em;
+					transition: opacity $med-speed ease-in-out;
+				}
+			}
+		} // end .new-content-grid
+		
+	} // end .ds-pane-content
+
+} // end .ds-pane
