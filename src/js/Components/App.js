@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Button from 'Components/Common/Button';
 import PlusIcon from 'assets/icons/plus-icon';
-import TypePane from 'Components/TypePane';
+import TypePane from 'Components/TypePane/TypePane';
 import FooterNav from 'Components/FooterNav';
 
 import 'sass/components/app';
