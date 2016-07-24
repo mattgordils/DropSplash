@@ -204,19 +204,19 @@ button {
     border: $btn-border;
     cursor: default;
     &:before {
-      color: $btn-bg;
       content: '';
-      background-color: $bg-color;
-      opacity: 1;
-      visibility: visible;
+      opacity: 0;
+      visibility: hidden;
     }
     &:after {
       opacity: 1;
       visibility: visible;
-      color: $btn-bg;
+      color: $btn-color;
       content: '×'; 
-      line-height: 21px;
-      font-size: 16px;
+      line-height: 16px;
+      font-size: 24px;
+      font-weight: 100;
+      letter-spacing: 0;
     }
   }
 
