@@ -36,6 +36,9 @@ button {
   font-size: 12px;
   border-radius: $btn-border-radius;
   transition: border $med-speed ease-in-out, background $med-speed ease-in-out, color $med-speed ease-in-out, background $med-speed ease-in-out, padding $med-speed ease-in-out;
+  .label {
+    display: inline-block;
+  }
   .icon {
     display: inline-block;
     vertical-align: top;
@@ -44,7 +47,7 @@ button {
       margin-left: 10px;
     }
     svg {
-      height: $btn-height - 2px;
+      height: $btn-height;
       width: 14px;
       * {
         fill: $btn-color;
@@ -55,11 +58,11 @@ button {
   &.large {
     height: $btn-large-height;
     padding: $btn-large-padding;
-    line-height: $btn-large-height - 4px;
+    line-height: $btn-large-height - 2px;
     font-size: 12px;
     .icon {
       svg {
-        height: $btn-large-height - 2px;
+        height: $btn-large-height;
       }
     }
     &.circle {
@@ -75,7 +78,7 @@ button {
     line-height: $btn-medium-height - 0px;
     .icon {
       svg {
-        height: $btn-medium-height - 2px;
+        height: $btn-medium-height;
       }
     }
     &.circle {
@@ -91,7 +94,7 @@ button {
     line-height: $btn-tiny-height - 0px;
     .icon {
       svg {
-        height: $btn-tiny-height - 2px;
+        height: $btn-tiny-height;
       }
     }
     &.circle {
@@ -230,9 +233,9 @@ button {
       margin: 0;
       opacity: 1;
       visibility: visible;
-      border: 0px solid $primary-color;
+      border: none;
       background: $primary-color;
-      animation: buttonRipple 1.75s ease-in-out infinite;
+      animation: buttonRipple 1.85s ease-in-out infinite;
       z-index: -1;
     }
   }
@@ -285,22 +288,44 @@ button {
 // Button Groups
 .button-group {
   display: inline-block;
+  margin-right: -1px;
   &.three-buttons button {
-    width: 33.333%;
+    width: calc(33.333% - 1px);
   }
   &.four-buttons button {
-    width: 25%;
+    width: calc(25% - 1px);
   }
   button {
-    width: 50%;
-    background: rgba($black, .4);
+    width: calc(50% - 1px);
+    background: rgba($black, .3);
     color: $white;
-    border-color: transparent;
-    border-right: 1px solid rgba($white, .3);
+    // border-right: 1px solid rgba($white, .2);
+    position: relative;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .025);
+    float: left;
+    margin-right: 1px;
+    overflow: visible;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      margin: 0;
+      background: rgba($black, .2);
+      left: 100%;
+      height: 100%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      visibility: visible;
+      opacity: 1;
+    }
     &:hover {
+      // border-right: 1px solid rgba($white, .2);
       background-color: $black;
-      border-color: transparent;
-      color: $white;
+      color: $primary-color;
+      svg * {
+        fill: $primary-color;
+      }
     }
     border-radius: 0;
     &:first-child {
@@ -309,6 +334,9 @@ button {
     &:last-child {
       border-radius: 0 50px 50px 0;
       border-right-color: transparent;
+      &:after {
+        display: none;
+      }
     }
   }
 }

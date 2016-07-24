@@ -1,0 +1,23 @@
+@import 'setup/variables';
+
+.add-content-between {
+	opacity: 0;
+	transition: opacity $med-speed $ease, padding $med-speed $ease;
+	margin: 0 -40px;
+	&:hover {
+		opacity: 1;
+		padding: 14px 0;
+	}
+	.line {
+		height: 2px;
+		background-color: #ccc;
+		opacity: .8;
+		position: relative;
+		border-radius: 20px;
+		.button {
+			position: absolute;
+			right: -($btn-tiny-height/2);
+			top: -($btn-tiny-height/2);
+		}
+	}
+}

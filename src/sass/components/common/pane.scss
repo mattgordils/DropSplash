@@ -1,8 +1,8 @@
 @import 'setup/variables';
 
 $pane-bg : #fff;
-$base-border-radius : 3px;
-$pane-line-color: #e5e5e5;
+$base-border-radius : 10px;
+$pane-line-color: $light-grey;
 
 .ds-pane {
 	font-family: $main-font;
@@ -12,9 +12,13 @@ $pane-line-color: #e5e5e5;
 	max-width: 350px;
 	min-height: 40px;
 	background: $pane-bg;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+	box-shadow: 0 10px 40px rgba(0, 0, 0, .2);
 	border-radius: $base-border-radius;
+	position: relative;
+	overflow: hidden;
 	width: 272px;
+	min-height: 200px;
+	text-align: left;
 
 	.ds-pane-header {
 		position: relative;
@@ -26,21 +30,22 @@ $pane-line-color: #e5e5e5;
 			left: 45px;
 			right: 45px;
 			text-align: center;
-			font-size: 16px;
+			font-size: 14px;
+			font-weight: 500;
 			line-height: 51px;
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
-			letter-spacing: .025em;
+			letter-spacing: .02em;
 		}
 		.icon {
 			stroke-color: red;
 			position: absolute;
-			padding: 18px 15px 19px;
+			padding: 19px 15px 19px;
 			left: 0;
-			height: 50px;
+			height: 51px;
 			cursor: pointer;
-			opacity: .4;
+			opacity: .3;
 			transition: opacity $med-speed ease-in-out;
 			&.right {
 				left: auto;
@@ -53,10 +58,6 @@ $pane-line-color: #e5e5e5;
 				height: 12px;
 				max-width: 30px;
 				vertical-align: top;
-				* {
-					stroke-width: 2px;
-					stroke-linecap: butt;
-				}
 			}
 		}
 	} // end .ds-pane-header
@@ -98,7 +99,7 @@ $pane-line-color: #e5e5e5;
 			border-radius: 0 0 $base-border-radius $base-border-radius;
 			.content-item {
 				width: 90px;
-				height: 71px;
+				height: 66px;
 				border-right: 1px solid $pane-line-color;
 				border-bottom: 1px solid $pane-line-color;
 				float: left;
@@ -127,9 +128,11 @@ $pane-line-color: #e5e5e5;
 				.icon {
 					display: block;
 					text-align: center;
-					margin: 17px auto 8px;
+					margin: 17px auto 7px;
 					transition: opacity $med-speed ease-in-out;
 					svg {
+						max-width: 28px;
+						height: 14px;
 						vertical-align: top;
 					}
 				}
@@ -137,6 +140,7 @@ $pane-line-color: #e5e5e5;
 					display: block;
 					text-align: center;
 					font-size: 12px;
+					line-height: 1em;
 					letter-spacing: .02em;
 					transition: opacity $med-speed ease-in-out;
 				}
@@ -145,44 +149,60 @@ $pane-line-color: #e5e5e5;
 		
 	} // end .ds-pane-content
 
-	// Next Transition
-	.pane-next-transition-enter {
-	  opacity: 0.01;
-	  position: absolute;
-	  transition: opacity .5s ease-in;
-	}
-
-	.pane-next-transition-enter.pane-next-transition-enter-active {
-	  opacity: 1;
-	  position: absolute;
-	}
-
-	.pane-next-transition-leave {
-		opacity: 1;
-		transition: opacity .5s ease-in;
-	}
-
-	.pane-next-transition-leave.pane-next-transition-leave-active {
-		opacity: 1;
-	}
-
-	// Prev Transition
-	.pane-prev-transition-enter {
-	  opacity: 0.01;
-	}
-
-	.pane-prev-transition-enter.pane-prev-transition-enter-active {
-	  opacity: 1;
-	  transition: opacity 500ms ease-in;
-	}
-
-	.pane-prev-transition-leave {
-	  opacity: 1;
-	}
-
-	.pane-prev-transition-leave.pane-prev-transition-leave-active {
-	  opacity: 0.01;
-	  transition: opacity 300ms ease-in;
-	}
-
 } // end .ds-pane
+
+// Next Transition
+.pane-next-transition-enter {
+  opacity: 0.01;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: transform .5s $ease, opacity .5s $ease;
+  transform: translateX(100%);
+}
+
+.pane-next-transition-enter.pane-next-transition-enter-active {
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateX(0);
+}
+
+.pane-next-transition-leave {
+	opacity: 1;
+	transition: transform .5s $ease, opacity .5s $ease;
+}
+
+.pane-next-transition-leave.pane-next-transition-leave-active {
+	opacity: 1;
+	transform: translateX(-175%);
+}
+
+// Prev Transition
+.pane-prev-transition-enter {
+  opacity: 0.01;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transition: transform .5s $ease, opacity .5s $ease;
+  transform: translateX(-100%);
+}
+
+.pane-prev-transition-enter.pane-prev-transition-enter-active {
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateX(0);
+}
+
+.pane-prev-transition-leave {
+	opacity: 1;
+	transition: transform .5s $ease, opacity .5s $ease;
+}
+
+.pane-prev-transition-leave.pane-prev-transition-leave-active {
+	opacity: 1;
+	transform: translateX(175%);
+}

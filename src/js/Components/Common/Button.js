@@ -42,7 +42,7 @@ export default class App extends Component {
 
 	render () {
 		return (
-			<button onClick={this.clickHandler.bind(this)} className={this.buttonClass()}>{this.buttonIcon()}{this.buttonLabel()}</button>
+			<button onClick={this.clickHandler.bind(this)} className={this.buttonClass()} data-tooltip-text={this.props.tooltipText} data-tooltip-position={this.props.tooltipPosition}>{this.buttonIcon()}{this.buttonLabel()}</button>
 		);
 	}
 }

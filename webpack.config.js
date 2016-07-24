@@ -90,7 +90,7 @@ const config = {
 				root: [
 						path.resolve(__dirname, 'src'),
 						path.resolve(__dirname, 'src/js'),
-						path.resolve(__dirname, 'src/images'),
+						path.resolve(__dirname, 'src/assets/images'),
 						path.resolve(__dirname, 'node_modules')
 				],
 				extensions: ['', '.js', '.json', '.hbs', '.jpg', '.png', '.svg', '.sass', '.scss'],

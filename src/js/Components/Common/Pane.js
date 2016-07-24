@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 
 import 'sass/components/common/pane';
+import 'sass/setup/icons';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import InlineSVG from 'svg-inline-react/lib';
+// import Arrow from 'assets/icons/arrow';
+import Arrow from 'assets/icons/arrow-2';
+import CloseX from 'assets/icons/close-x';
 
 export default class App extends Component {
 
@@ -33,31 +38,29 @@ export default class App extends Component {
 		}
 	}
 
+	showBackArrow () {
+		console.log('runnin');
+		backArrow = ''
+		if (this.state.currentView > 0) {
+			var backArrow = (<InlineSVG src={Arrow} element="span" className="icon" onClick={this.goToPrevView.bind(this)} />)
+		}
+		return (backArrow);
+	}
+
 	render () {
-
-		console.log(this.state);
-
 		return (
 			<div className="ds-pane">
 				<div className="ds-pane-header">
-					<span onClick={this.goToPrevView.bind(this)} className="icon">
-						<svg viewBox="0 0 20 12.75">
-							<polyline fill="none" stroke="#000000" stroke-miterlimit="10" points="6.816,12.408 0.816,6.408 
-								6.816,0.408 	"/>
-							<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="0.816" y1="6.408" x2="20.236" y2="6.408"/></svg>
-					</span>
+					{this.showBackArrow()}
 					<span className="pane-title">{this.props.title}</span>
-					<span className="icon right">
-						<svg viewBox="0 0 13 13">
-							<line fill="none" stroke="#000000" strokeWidth="1" stroke-miterlimit="10" x1="0.408" y1="12.408" x2="12.408" y2="0.408"/>
-							<line fill="none" stroke="#000000" strokeWidth="1" stroke-miterlimit="10" x1="0.408" y1="0.408" x2="12.408" y2="12.408"/></svg>
-					</span>
+					<InlineSVG src={CloseX} element="span" className="icon right" />
 				</div>
+
 				<div className="ds-pane-content">
 					<ReactCSSTransitionGroup 
 						transitionName={this.state.transitionDirection}
 						transitionEnterTimeout={500}
-						transitionLeaveTimeout={300}
+						transitionLeaveTimeout={500}
 					>
 						{this.props.views[this.state.currentView]}
 					</ReactCSSTransitionGroup>
@@ -65,4 +68,5 @@ export default class App extends Component {
 			</div>
 		)
 	}
+
 }

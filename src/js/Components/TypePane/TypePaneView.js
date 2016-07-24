@@ -12,10 +12,10 @@ export default class App extends Component {
 
 		return (
 			<div key="view1">
-                <h1>View {this.props.title}</h1>
-                <p>It' the first one.</p>
-                <Button buttonClass="tiny" label="Next" clickEvent={this.props.clickHandler} />
-            </div>
+        <h1>View {this.props.title}</h1>
+        <p>It' the first one.</p>
+        <Button buttonClass="tiny" label="Next" clickEvent={this.props.clickHandler} />
+	    </div>
 		);
 
 	}

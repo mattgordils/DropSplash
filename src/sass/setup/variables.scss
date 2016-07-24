@@ -1,7 +1,7 @@
 // Colors
 $bg-color : #fff;
 $primary-color: #16E1B9;
-$light-grey: #f5f5f5;
+$light-grey: #f2f2f2;
 $text-color : #333;
 $black : #000;
 $white : #fff;
@@ -56,31 +56,31 @@ $btn-padding: 0px 15px 0px 15px;
 	    $btn-tiny-padding: 0px 10px 0px 10px;
 
 // Default Button
-$btn-border: 1px solid $primary-color;
+$btn-border: none;
 $btn-bg : $primary-color;
 $btn-color : $bg-color;
-$btn-hover-bg : darken($primary-color, 5%);
+$btn-hover-bg : darken($primary-color, 7%);
 $btn-border-radius : 60px;
 $btn-hover-color : $bg-color;
-$btn-hover-border: 1px solid darken($primary-color, 5%);
+$btn-hover-border: none;
 
 // Secondary Button
-$secondary-btn-border: 1px solid $text-color;
+$secondary-btn-border: none;
 $secondary-btn-bg : $text-color;
 $secondary-btn-color : $bg-color;
 $secondary-btn-hover-bg : $text-color;
 $secondary-btn-border-radius : 60px;
 $secondary-btn-hover-color : $primary-color;
-$secondary-btn-hover-border: 1px solid $text-color;
+$secondary-btn-hover-border: none;
 
 // Tertiary Button
-$tertiary-btn-border: 1px solid $light-grey;
+$tertiary-btn-border: none;
 $tertiary-btn-bg : $light-grey;
 $tertiary-btn-color : $light-text-color;
 $tertiary-btn-hover-bg : darken($light-grey, 5%);
 $tertiary-btn-border-radius : 60px;
 $tertiary-btn-hover-color : $text-color;
-$tertiary-btn-hover-border: 1px solid darken($light-grey, 5%);
+$tertiary-btn-hover-border: none;
 
 // Breakpoints
 $sm : 450;
@@ -92,5 +92,6 @@ $huge : 1500;
 // Transitions
 $fast-speed : .1s;
 $slow-speed : .5s;
+$slow-speed : 2.5s;
 $med-speed : .2s;
 $ease  : ease-in-out;
