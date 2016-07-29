@@ -7,7 +7,7 @@ export default class App extends Component {
 	render () {
 
 		var backgroundStyle = {
-			backgroundImage: 'url(' + this.props.image + ')'
+			backgroundImage: 'url(' + this.props.backgroundImage + ')'
 		}
 
 		var overlayStyle = {

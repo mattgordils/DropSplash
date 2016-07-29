@@ -8,6 +8,7 @@ import Switch from 'Components/Common/Switch';
 import BackgroundContent from 'Components/Common/BackgroundContent';
 import FooterNav from 'Components/FooterNav';
 import AddContentBetween from 'Components/Common/AddContentBetween';
+import PageSection from 'Components/Common/PageSection';
 
 import InlineSVG from 'svg-inline-react/lib';
 
@@ -27,67 +28,28 @@ export default class App extends Component {
 		return (
 			<div>
 				<div className="app-content">
+					
+					<PageSection 
+						overlayColor="#000000"
+						overlayOpacity=".2"
+						backgroundImage="http://unsplash.it/2000x1500"
+						{...this.props}
+					/>
 
-					<div className="ds-page-section">
-						<div className="ds-section-controls">
-							<div className="left-controls">
-								<Button
-									buttonClass="circle medium button-ripple add-content-button"
-									icon={PlusIcon}
-									clickEvent={this.addNew}
-									{...this.props}
-								/>
-								<ContentPane />
-							</div>
-	
-							<div className="right-controls">
-								<div className="button-group two-buttons">
-									<Button
-										buttonClass="medium"
-										label="Section Options"
-										{...this.props}
-									/>
-									<Button
-										buttonClass="medium"
-										label="Background"
-										{...this.props}
-									/>
-								</div>
-							</div>
-						</div>
+					<PageSection 
+						empty="true"
+						{...this.props}
+					/>
 
-						<div className="section-content">
-							<div className="container">
-								<div>
-									<div className="ds-empty-content logo">
-										<InlineSVG src={PlusIcon} element="span" className="icon" />
-										<span className="text">Add Logo</span>
-									</div>
-								</div>
-								<div className="ds-editable">
-									<h1 className="content" contentEditable="true">The Splash Title</h1>
-									<EditOptions />
-								</div>
-								<AddContentBetween />
-								<div className="ds-editable">
-									<p className="content" contentEditable="true">Use the button at the top left to easily add content to the page. You can insert headlines, text, images, videos, an Instagram or Twitter feed, buttons, and MailChimp Newsletter signups.</p>
-									<EditOptions />
-								</div>
-								<div>
-									<div className="ds-empty-content empty-button">
-										<span className="text">Add Button</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<BackgroundContent 
-							image="http://unsplash.it/2000x1500"
-							overlayColor="#000000"
-							overlayOpacity=".2"
-							{...this.props}
-						/>
-					</div>
+					<PageSection 
+						alignment="left"
+						contentWidth="800px"
+						height="500px"
+						overlayColor="#000000"
+						overlayOpacity=".8"
+						backgroundImage="http://unsplash.it/1500x1500"
+						{...this.props}
+					/>
 
 					<div className="ds-page-section">
 						<h1> Hello World </h1> 

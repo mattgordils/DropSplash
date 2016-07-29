@@ -39,7 +39,6 @@ export default class App extends Component {
 	}
 
 	showBackArrow () {
-		console.log('runnin');
 		backArrow = ''
 		if (this.state.currentView > 0) {
 			var backArrow = (<InlineSVG src={Arrow} element="span" className="icon" onClick={this.goToPrevView.bind(this)} />)

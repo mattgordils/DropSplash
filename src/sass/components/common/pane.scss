@@ -17,7 +17,7 @@ $pane-line-color: $light-grey;
 	position: relative;
 	overflow: hidden;
 	width: 272px;
-	min-height: 200px;
+	min-height: 250px;
 	text-align: left;
 
 	.ds-pane-header {
@@ -93,6 +93,16 @@ $pane-line-color: $light-grey;
 		min-height: 40px;
 		overflow-x: hidden;
 		overflow-y: auto;
+		.has-button {
+			padding-bottom: $btn-height;
+			.button {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				border-radius: 0;
+			}
+		}
 
 		.new-content-grid {
 			overflow: hidden;

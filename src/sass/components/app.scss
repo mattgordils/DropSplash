@@ -40,10 +40,15 @@ svg, svg * {
 		display: table;
 		width: 100%;
 		text-align: center;
-		&.left-aligned {
+		&.left {
 			text-align: left;
+			.section-content {
+				.container {
+					margin: 0 7.5%;
+				}
+			}
 		}
-		&.right-aligned {
+		&.right {
 			text-align: right;
 		}
 		&.in-motion {

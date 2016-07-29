@@ -3,10 +3,10 @@
 .add-content-between {
 	opacity: 0;
 	transition: opacity $med-speed $ease, padding $med-speed $ease;
-	margin: 0 -40px;
+	margin: -14px -40px;
+	padding: 14px 0;
 	&:hover {
 		opacity: 1;
-		padding: 14px 0;
 	}
 	.line {
 		height: 2px;

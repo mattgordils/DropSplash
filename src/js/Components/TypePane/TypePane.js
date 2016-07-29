@@ -21,6 +21,12 @@ export default class App extends Component {
     paneContent () {
         return [
             (<TypePaneView title="view 1" clickHandler={this.clickHandler.bind(this)} />),
+            (<div key="view1">
+                <h1>Real First One</h1>
+                <p>It' the first one.</p>
+                <a className="button tiny" onClick={this.clickHandler.bind(this)}>Next</a>
+            </div>),
+            (<TypePaneView title="view 1" clickHandler={this.clickHandler.bind(this)} />),
             (<TypePaneView title="view 2" clickHandler={this.clickHandler.bind(this)} />),
             (<TypePaneView title="view 3" clickHandler={this.clickHandler.bind(this)} />)
         ]
