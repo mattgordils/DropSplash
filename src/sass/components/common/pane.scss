@@ -1,7 +1,7 @@
 @import 'setup/variables';
 
 $pane-bg : #fff;
-$base-border-radius : 10px;
+$base-border-radius : 4px;
 $pane-line-color: $light-grey;
 
 .ds-pane {
@@ -19,6 +19,7 @@ $pane-line-color: $light-grey;
 	width: 272px;
 	min-height: 250px;
 	text-align: left;
+	color: $text-color;
 
 	.ds-pane-header {
 		position: relative;
@@ -160,6 +161,29 @@ $pane-line-color: $light-grey;
 	} // end .ds-pane-content
 
 } // end .ds-pane
+
+// Pane Enter/Exit Transitions
+.pane-transition-appear {
+	transform: scale(.95);
+	opacity: 0;
+	transition: transform $med-speed $ease, opacity $med-speed $ease;
+}
+
+.pane-transition-appear.pane-transition-appear-active {
+	transform: scale(1);
+	opacity: 1;
+}
+
+.pane-transition-leave {
+	transform: scale(1);
+	opacity: 1;
+	transition: transform $med-speed $ease, opacity $med-speed $ease;
+}
+
+.pane-transition-leave.pane-transition-leave-active {
+	transform: scale(.95);
+	opacity: .01;
+}
 
 // Next Transition
 .pane-next-transition-enter {

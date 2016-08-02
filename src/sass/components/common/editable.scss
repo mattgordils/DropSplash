@@ -1,16 +1,17 @@
 @import 'setup/variables';
 
-// @import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Sorts+Mill+Goudy:400,400i';
-
 h1 {
-	font-weight: 600;
 	font-size: 50px;
 	display: inline-block;
 	margin: 0 auto;
 	line-height: 1.333em;
-	font-family: 'Sorts Mill Goudy', san-serif;
-	font-family: 'Playfair Display', sans-serif;
-	font-weight: normal;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 600;
+}
+
+P {
+	font-family: 'Cotham Sans', sans-serif;
+	letter-spacing: .02em;
 }
 
 .ds-editable {
@@ -73,29 +74,27 @@ h1 {
 		&:after {
 			border-color: $primary-color;
 		}
-		.ds-edit-options {
-			opacity: 1;
-			visibility: visible;
-			max-height: 200px;
-			.option {
-				transform: translateY(0);
-				&:first-child {
-					padding-top: 3px;
-					svg {
-						height: 31px;
-					}
-				}
-			}
-		}
+		// .ds-edit-options {
+		// 	opacity: 1;
+		// 	visibility: visible;
+		// 	max-height: 200px;
+		// 	.option {
+		// 		transform: translateY(0);
+		// 		&:first-child {
+		// 			padding-top: 3px;
+		// 			svg {
+		// 				height: 31px;
+		// 			}
+		// 		}
+		// 	}
+		// }
 	}
 }
 
 .ds-edit-options {
-	opacity: 0;
-	visibility: hidden;
 	position: absolute;
 	top: 50%;
-	transform: translateY(-50%);
+	margin-top: -49px;
 	right: 0;
 	z-index: 1;
 	line-height: 26px;
@@ -104,7 +103,6 @@ h1 {
 	transition: visibility $med-speed ease-in-out, opacity $med-speed ease-in-out, max-height $slow-speed ease-in-out, transform $slow-speed ease-in-out;
 	background: $primary-color;
 	border-radius: 50px;
-	max-height: 30px;
 	.option {
 		vertical-aligin: top;
 		line-height: 30px;
@@ -130,9 +128,9 @@ h1 {
 		}
 		&:first-child {
 			height: 34px;
-			padding-top: 0px;
+			padding-top: 3px;
 			border-radius: 50px 50px 0 0;
-			transition: padding $slow-speed $ease;
+			transition: background $med-speed $ease, padding $med-speed $ease;
 			svg {
 				height: 30px;
 			}
@@ -149,45 +147,5 @@ h1 {
 		&:hover {
 			background: $btn-hover-bg;
 		}
-	}
-}
-
-.ds-empty-content {
-	background: rgba($black, .2);
-	border: 2px dashed rgba($white, .5);
-	color: $white;
-	border-radius: 6px;
-	cursor: pointer;
-	transition: background $med-speed $ease, border $med-speed $ease;
-	display: inline-block;
-	padding: 20px 30px;
-	line-height: 1.333em;
-	text-transform: uppercase;
-  letter-spacing: .2em;
-  font-size: 12px;
-  width: 200px;
-  text-align: center;
-	&:hover {
-		background-color: rgba($black, .4);
-		border-color: $white;
-	}
-	.icon {
-		svg {
-			height: 14px;
-			* {
-				fill: $white;
-			}
-		}
-	}
-	&.logo {
-		padding: 40px;
-		margin-bottom: 10px;
-		.icon {
-			display: block;
-			margin: 0 auto 8px;
-		}
-	}
-	&.empty-button {
-		margin-top: 10px;
 	}
 }

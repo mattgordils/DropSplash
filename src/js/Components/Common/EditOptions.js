@@ -12,26 +12,36 @@ import EditIcon from 'assets/icons/edit';
 
 export default class App extends Component {
 
-	render () {
-
-		return (
-			<div className="ds-edit-actions">
-				<Button 
-					buttonClass="tiny circle ds-edit-button"
-					icon={EditIcon}
-					tooltipText="Edit"
-				/>
-				<div className="ds-edit-options">
+	editOptionContent () {
+		if(this.props.editing === true) {
+			return (<div className="ds-edit-options">
 					<div data-tooltip-text="Settings" className="option edit">
 						<InlineSVG src={SettingsIcon} element="span" className="icon" />
 					</div>
-					<div data-tooltip-text="Save" className="option done">
+					<div data-tooltip-text="Save" className="option done" onClick={this.props.clickHandler}>
 						<InlineSVG src={CheckIcon} element="span" className="icon" />
 					</div>
 					<div data-tooltip-text="Delete" className="option">
 						<InlineSVG src={DeleteIcon} element="span" className="icon" />
 					</div>
-				</div>
+				</div>)
+		} else {
+			return (
+				<Button 
+					buttonClass="tiny circle ds-edit-button"
+					icon={EditIcon}
+					tooltipText="Edit"
+					clickEvent={this.props.clickHandler}
+				/>
+			)
+		}
+	}
+
+	render () {
+
+		return (
+			<div className="ds-edit-actions">
+				{this.editOptionContent()}
 			</div>
 		);
 		

@@ -30,9 +30,19 @@ export default class App extends Component {
 				<div className="app-content">
 					
 					<PageSection 
+						initialBlock="true"
 						overlayColor="#000000"
-						overlayOpacity=".2"
+						overlayOpacity=".3"
 						backgroundImage="http://unsplash.it/2000x1500"
+						// backgroundImage="assets/images/0.jpg"
+						{...this.props}
+					/>
+
+					<PageSection 
+						height="80px"
+						overlayColor="#f3f3f3"
+						overlayOpacity="1"
+						textColor="#444"
 						{...this.props}
 					/>
 
@@ -43,8 +53,10 @@ export default class App extends Component {
 
 					<PageSection 
 						alignment="left"
-						contentWidth="800px"
+						contentWidth="400px"
 						height="500px"
+						textColor="#16E1B9"
+						// contentOpacity=".5"
 						overlayColor="#000000"
 						overlayOpacity=".8"
 						backgroundImage="http://unsplash.it/1500x1500"

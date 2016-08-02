@@ -5,7 +5,7 @@ import 'sass/setup/icons';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import InlineSVG from 'svg-inline-react/lib';
 // import Arrow from 'assets/icons/arrow';
-import Arrow from 'assets/icons/arrow-2';
+import BackArrow from 'assets/icons/arrow-2-back';
 import CloseX from 'assets/icons/close-x';
 
 export default class App extends Component {
@@ -41,30 +41,38 @@ export default class App extends Component {
 	showBackArrow () {
 		backArrow = ''
 		if (this.state.currentView > 0) {
-			var backArrow = (<InlineSVG src={Arrow} element="span" className="icon" onClick={this.goToPrevView.bind(this)} />)
+			var backArrow = (<InlineSVG src={BackArrow} element="span" className="icon" onClick={this.goToPrevView.bind(this)} />)
 		}
 		return (backArrow);
 	}
 
 	render () {
 		return (
-			<div className="ds-pane">
-				<div className="ds-pane-header">
-					{this.showBackArrow()}
-					<span className="pane-title">{this.props.title}</span>
-					<InlineSVG src={CloseX} element="span" className="icon right" />
-				</div>
+			<ReactCSSTransitionGroup 
+				transitionName='pane-transition'
+				transitionAppear={true}
+				transitionAppearTimeout={500}
+				transitionEnterTimeout={500}
+				transitionLeaveTimeout={500}
+			>
+				<div className="ds-pane">
+					<div className="ds-pane-header">
+						{this.showBackArrow()}
+						<span className="pane-title">{this.props.title}</span>
+						<InlineSVG src={CloseX} element="span" className="icon right" />
+					</div>
 
-				<div className="ds-pane-content">
-					<ReactCSSTransitionGroup 
-						transitionName={this.state.transitionDirection}
-						transitionEnterTimeout={500}
-						transitionLeaveTimeout={500}
-					>
-						{this.props.views[this.state.currentView]}
-					</ReactCSSTransitionGroup>
+					<div className="ds-pane-content">
+						<ReactCSSTransitionGroup 
+							transitionName={this.state.transitionDirection}
+							transitionEnterTimeout={500}
+							transitionLeaveTimeout={500}
+						>
+							{this.props.views[this.state.currentView]}
+						</ReactCSSTransitionGroup>
+					</div>
 				</div>
-			</div>
+			</ReactCSSTransitionGroup>
 		)
 	}
 
