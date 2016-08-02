@@ -14,7 +14,7 @@ export default class App extends Component {
 					<Button
 						buttonClass="tiny circle"
 						tooltipText="Add Content"
-						tooltipPosition="bottom"
+						// tooltipPosition="top"
 						icon={PlusIcon}
 						{...this.props}
 					/>

@@ -3,7 +3,7 @@
 .add-content-between {
 	opacity: 0;
 	transition: opacity $med-speed $ease, padding $med-speed $ease;
-	margin: -14px -40px;
+	margin: -14px -0px;
 	padding: 14px 0;
 	position: relative;
 	z-index: 3;
@@ -13,12 +13,11 @@
 	}
 	.line {
 		height: 2px;
-		background-color: rgba(125, 125, 125, .5);
+		background-color: $primary-color;
 		position: relative;
-		border-radius: 20px;
 		.button {
 			position: absolute;
-			right: -($btn-tiny-height/2);
+			right: -($btn-tiny-height) - 3px;
 			top: -($btn-tiny-height/2);
 		}
 	}

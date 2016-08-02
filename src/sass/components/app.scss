@@ -136,9 +136,10 @@ svg, svg * {
 	&[data-tooltip-position="top"] { // TOP NOT QUITE WORKING
 		&:after {
 			margin-left: 0;
-			margin-bottom: 6px;
-			bottom: 100%;
-			left: 50%;
+	    margin-bottom: 6px;
+	    bottom: 100%;
+	    left: 50%;
+	    top: auto;
 			transform: translate(-50%, 0);
 		}
 	}
