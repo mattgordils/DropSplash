@@ -30,6 +30,29 @@ import 'sass/components/settings';
 
 export default class App extends Component {
 
+	constructor (props) {
+    super(props);
+    this.state = {
+      settingsOpen: false
+    };     
+  }
+
+  toggleSettings () {
+  	if (this.state.settingsOpen === false) {
+  		this.setState({settingsOpen: true});
+  	} else {
+  		this.setState({settingsOpen: false});
+  	}
+  }
+
+  appContainerClass () {
+  	var appContainerClass = 'app-content';
+    if (this.state.settingsOpen === true) {
+      appContainerClass += ' '+'settings-open';
+    }
+    return appContainerClass;
+  }
+
 	addNew () {
 		console.log(this);
 		var currentClass = this.state.buttonClass.replace('button-ripple', '');
@@ -380,11 +403,15 @@ export default class App extends Component {
 
 					<div className="settings-content">
 						<div className="settings-block publish-status">
-							<span className="settings-block-title small-caps">Publish Status</span>
 							<Switch />
 						</div>
 						<div className="settings-block">
-							<span className="settings-block-title small-caps">SEO</span>
+							<div className="settings-block-title small-caps"><span className="text">DropSplash URL</span></div>
+							<p><a href="#">http://dropsplash.com/mysplashpage</a></p>
+							<Button buttonClass="tiny secondary" label="Use a custom domain" />
+						</div>
+						<div className="settings-block">
+							<div className="settings-block-title small-caps"><span className="text">SEO</span></div>
 							<p className="section-desc">This information will be used for search engine optimization. When someone searches for you page, this is the info that will come up.</p>
 							<div className="fancy-input-wrap dark">
 								<input required="required" type="text" value="Splash Page Title" />
@@ -396,7 +423,7 @@ export default class App extends Component {
 							</div>
 						</div>
 						<div className="settings-block">
-							<span className="settings-block-title small-caps">Account Info</span>
+							<div className="settings-block-title small-caps"><span className="text">Account Info</span></div>
 							<div className="fancy-input-wrap dark">
 								<input required="required" type="text" value="drop@splash.com" />
 								<label>Email</label>
@@ -413,7 +440,7 @@ export default class App extends Component {
 					</div>
 				</div>
 
-				<div className="app-content settings-open">
+				<div className={this.appContainerClass()} >
 
 					<div className="ds-page-section ds-landing">
 						<div className="section-content">
@@ -692,7 +719,9 @@ export default class App extends Component {
 					/>
 
 				</div>
-				<FooterNav/>
+				<FooterNav
+					settingsToggle={this.toggleSettings.bind(this)}
+				/>
 			</div>
 		)
 	}

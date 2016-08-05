@@ -32,7 +32,7 @@ a {
   -webkit-touch-callout: none;
   transition: color $med-speed $ease, border $med-speed $ease, background-color $med-speed $ease, opacity $med-speed $ease;
   &:hover,
-  &:focus { 
+  &:active { 
     color: $link-hover-color;
   }
 }

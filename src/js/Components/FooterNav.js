@@ -15,7 +15,7 @@ export default class App extends Component {
 		return (
 			<div className="footer-nav">
 				<div className="left-items">
-					<div className="link"><InlineSVG src={SettingsIcon} element="span" className="icon" />Settings</div>
+					<div className="link" onClick={this.props.settingsToggle.bind(this)}><InlineSVG src={SettingsIcon} element="span" className="icon" />Settings</div>
 				</div>
 				<div className="center-items">
 					<Button
