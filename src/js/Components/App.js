@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Button from 'Components/Common/Button';
 import PlusIcon from 'assets/icons/plus-icon';
 import CheckIcon from 'assets/icons/check';
+import CloseX from 'assets/icons/close-x';
 import BackArrow from 'assets/icons/arrow-2-back';
 import DSLogo from 'assets/icons/temp-logo';
 import TwitterIcon from 'assets/icons/twitter';
@@ -372,12 +373,43 @@ export default class App extends Component {
 			<div>
 
 				<div className="settings-panel">
-					<div className="settings-block">
+					<div className="settings-block settings-header">
 						<span className="panel-title small-caps">Settings</span>
+						<InlineSVG src={CloseX} element="span" className="close-x" />
 					</div>
-					<div className="settings-block">
-						<span className="settings-block-title small-caps">Account</span>
 
+					<div className="settings-content">
+						<div className="settings-block publish-status">
+							<span className="settings-block-title small-caps">Publish Status</span>
+							<Switch />
+						</div>
+						<div className="settings-block">
+							<span className="settings-block-title small-caps">SEO</span>
+							<p className="section-desc">This information will be used for search engine optimization. When someone searches for you page, this is the info that will come up.</p>
+							<div className="fancy-input-wrap dark">
+								<input required="required" type="text" value="Splash Page Title" />
+								<label>Page Title</label>
+							</div>
+							<div className="fancy-input-wrap dark">
+								<input required="required" type="password" />
+								<label>Password</label>
+							</div>
+						</div>
+						<div className="settings-block">
+							<span className="settings-block-title small-caps">Account Info</span>
+							<div className="fancy-input-wrap dark">
+								<input required="required" type="text" value="drop@splash.com" />
+								<label>Email</label>
+							</div>
+							<div className="fancy-input-wrap dark">
+								<input required="required" type="password" />
+								<label>Password</label>
+							</div>
+						</div>
+					</div>
+
+					<div className="save-settings">
+						<Button label="Save Changes" />
 					</div>
 				</div>
 

@@ -227,7 +227,30 @@ select:focus {
   width: 100%;
   position: relative;
   margin-bottom: 10px;
-  .login-input {
+  &.dark {
+    input {
+      background: $text-color;
+      border-color: $text-color;
+      color: $white;
+      @include font-smooth();
+      &:focus,
+      &:valid {
+        border-color: $text-color;
+        background-color: $text-color;
+        + label {
+          top: 7px;
+          left: 13px;
+          font-size: 12px;
+          color: $primary-color;
+        }
+      }
+      + label {
+        font-weight: 300;
+        letter-spacing: .03em;
+      }
+    }
+  }
+  input {
     height: $btn-large-height;
     font-size: 14px;
     padding-left: 12px;
@@ -239,6 +262,7 @@ select:focus {
     &:focus,
     &:valid {
       border-color: $light-grey;
+      background-color: $light-grey;
       + label {
         top: 7px;
         left: 13px;

@@ -7,11 +7,13 @@ export default class App extends Component {
 	render () {
 
 		return (
-			<div className="switch">
+			<div className="switch-wrap">
 				<input id="publish" type="checkbox" />
 				<label htmlFor="publish">
-					<span className="text off">Unpublished</span>
-					<span className="text on">Published</span>
+					<div className="switch">
+						<span className="text off">Unpublished</span>
+						<span className="text on">Published</span>
+					</div>
 				</label>
 			</div>
 		);
