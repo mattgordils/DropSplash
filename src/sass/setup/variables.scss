@@ -30,7 +30,7 @@ $highlight-color : $bg-color;
 
 // Text Inputs
 $input-bg : transparent;
-$input-border : 1px solid $light-text-color;
+$input-border : 1px solid lighten($text-color, 65%);
 $input-border-radius : 2px;
 $input-focus-bg : transparent;
 $input-focus-color : $text-color;
@@ -38,7 +38,7 @@ $input-focus-border : 1px solid $primary-color;
 $placeholder-color : $light-text-color;
 $placeholder-focus-color : transparent;
 $input-padding: 0px 10px 0px 10px;
-$input-line-height: 40px; // Make $btn-medium-height
+$input-line-height: 30px; // $btn-medium-height
 
 // Select Fields
 $select-border : $input-border;
@@ -81,6 +81,16 @@ $tertiary-btn-hover-bg : darken($light-grey, 5%);
 $tertiary-btn-border-radius : 60px;
 $tertiary-btn-hover-color : $text-color;
 $tertiary-btn-hover-border: none;
+
+// General UI Varibales
+$base-border-radius : 4px;
+$footer-height : 50px;
+
+// Pane Variables
+$pane-bg : #fff;
+$pane-line-color : $light-grey;
+$ds-pane-header-height : 50px;
+$pane-padding : 15px;
 
 // Breakpoints
 $sm : 450;

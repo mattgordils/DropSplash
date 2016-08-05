@@ -18,6 +18,13 @@ body{
   font-weight: normal;
 }
 
+.small-caps {
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
 a { 
   text-decoration: none; 
   color: $link-color;

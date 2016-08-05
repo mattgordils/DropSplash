@@ -4,7 +4,6 @@ import 'sass/components/common/pane';
 import 'sass/setup/icons';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import InlineSVG from 'svg-inline-react/lib';
-// import Arrow from 'assets/icons/arrow';
 import BackArrow from 'assets/icons/arrow-2-back';
 import CloseX from 'assets/icons/close-x';
 
@@ -46,6 +45,21 @@ export default class App extends Component {
 		return (backArrow);
 	}
 
+	paneClass () {
+    var paneClass = 'ds-pane';
+    if (this.props.paneClass) {
+      paneClass += ' '+this.props.paneClass;
+    }
+    return paneClass;
+  }
+
+  paneStyle () {
+  	var paneStyle = {
+	  	height: this.props.paneHeight
+	  }
+	  return paneStyle
+  }
+
 	render () {
 		return (
 			<ReactCSSTransitionGroup 
@@ -55,7 +69,7 @@ export default class App extends Component {
 				transitionEnterTimeout={500}
 				transitionLeaveTimeout={500}
 			>
-				<div className="ds-pane">
+				<div className={this.paneClass()} style={this.paneStyle()}>
 					<div className="ds-pane-header">
 						{this.showBackArrow()}
 						<span className="pane-title">{this.props.title}</span>
@@ -65,8 +79,8 @@ export default class App extends Component {
 					<div className="ds-pane-content">
 						<ReactCSSTransitionGroup 
 							transitionName={this.state.transitionDirection}
-							transitionEnterTimeout={500}
-							transitionLeaveTimeout={500}
+							transitionEnterTimeout={550}
+							transitionLeaveTimeout={550}
 						>
 							{this.props.views[this.state.currentView]}
 						</ReactCSSTransitionGroup>

@@ -1,8 +1,5 @@
 @import 'setup/variables';
-
-$pane-bg : #fff;
-$base-border-radius : 4px;
-$pane-line-color: $light-grey;
+@import 'setup/mixins';
 
 .ds-pane {
 	font-family: $main-font;
@@ -16,15 +13,19 @@ $pane-line-color: $light-grey;
 	border-radius: $base-border-radius;
 	position: relative;
 	overflow: hidden;
-	width: 272px;
+	min-width: 225px;
 	min-height: 250px;
 	text-align: left;
+	z-index: 6;
 	color: $text-color;
+	&.wide {
+		width: 272px;
+	}
 
 	.ds-pane-header {
 		position: relative;
 		border-bottom: 1px solid $pane-line-color;
-		height: 50px;
+		height: $ds-pane-header-height;
 		.pane-title {
 			display: block;
 			position: absolute;
@@ -33,7 +34,7 @@ $pane-line-color: $light-grey;
 			text-align: center;
 			font-size: 14px;
 			font-weight: 500;
-			line-height: 51px;
+			line-height: $ds-pane-header-height + 1px;
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -44,10 +45,10 @@ $pane-line-color: $light-grey;
 			position: absolute;
 			padding: 19px 15px 19px;
 			left: 0;
-			height: 51px;
+			height: $ds-pane-header-height + 1px;
 			cursor: pointer;
 			opacity: .3;
-			transition: opacity $med-speed ease-in-out;
+			transition: opacity $med-speed $ease;
 			&.right {
 				left: auto;
 				right: 0;
@@ -66,97 +67,166 @@ $pane-line-color: $light-grey;
 	.ds-pane-tabs {
 		height: 35px;
 		background: $light-grey;
+		background: $pane-bg;
 		text-align: left;
+		position: relative;
+		@include clearfix();
+		&.four-tabs {
+			hr,
+			.tab {
+				width: 25%;
+			}
+			.tab.active {
+				&:nth-child(2) ~ hr {
+					left: 25%;
+				}
+				&:nth-child(3) ~ hr {
+					left: 50%;
+				}
+				&:nth-child(4) ~ hr {
+					left: 75%;
+				}
+			}
+		}
+		hr {
+			display: block;
+			height: 2px;
+			width: 100%;
+			position: absolute;
+			border: none;
+			left: 0;
+			bottom: 0px;
+			transition: background $med-speed $ease;
+			background-color: $primary-color;
+			width: 33.333%;
+			margin: 0;
+			transition: left $med-speed $ease;
+		}
 		.tab {
-			display: inline-block;
+			display: block;
+			float: left;
 			line-height: 34px;
 			width: 33.333%;
-			margin-right: -4px;
 			text-align: center;
 			border-bottom: 1px solid $pane-line-color;
 			color: $light-text-color;
-			font-size: 14px;
 			cursor: pointer;
-			transition: color $med-speed ease-in-out, background $med-speed ease-in-out, border $med-speed ease-in-out;
+			transition: color $med-speed $ease, background $med-speed $ease, border $med-speed $ease;
 			&:hover {
 				color: $text-color;
 			}
 			&.active {
 				background: $pane-bg;
 				color: $text-color;
-				border-bottom-color: $primary-color;
+				&:nth-child(2) ~ hr {
+					left: 33.333%;
+				}
+				&:nth-child(3) ~ hr {
+					left: 66.666%;
+				}
 			}
 		}
 	} // end .ds-pane-tabs
 	
 	.ds-pane-content {
 		display: block;
-		min-height: 40px;
 		overflow-x: hidden;
 		overflow-y: auto;
+    height: calc(100% - 50px);
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    > * {
+    	position: absolute;
+    	top: 0;
+    	right: 0;
+    	bottom: 0;
+    	left: 0;
+    }
+    .row {
+    	margin-bottom: 15px;
+    	&.range {
+    		padding-top: 5px;
+    	}
+    	&:last-of-type {
+    		margin-bottom: 0;
+    	}
+    }
+    .pane-grid-row {
+    	@include clearfix();
+    	margin-left: -5px;
+    	margin-right: -5px;
+    	.col {
+    		float: left;
+    		padding: 0 5px;
+    		input[type=range] {
+    			margin-left: -1px;
+				}
+    		&.one-third {
+    			width: 33.333%;
+    		}
+    		&.two-thirds {
+    			width: 66.666%;
+    		}
+    		&.half {
+    			width: 50%;
+    		}
+    		&.one-quarter {
+    			width: 25%;
+    		}
+    		&.three-quarter {
+    			width: 75%;
+    		}
+    	}
+    }
+    .pane-padded {
+    	padding: 15px;
+    }
 		.has-button {
-			padding-bottom: $btn-height;
-			.button {
+			padding-bottom: $btn-medium-height;
+			.content {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: $btn-medium-height;
+				left: 0;
+				overflow-x: hidden;
+				overflow-y: auto;
+			}
+			.pane-view-actions {
 				position: absolute;
 				bottom: 0;
 				left: 0;
 				right: 0;
-				border-radius: 0;
+				.button {
+					border-radius: 0;
+				}
+				&.two-actions {
+					@include clearfix();
+					.button {
+						float: left;
+						width: 50%;
+					}
+				}
 			}
 		}
 
-		.new-content-grid {
-			overflow: hidden;
-			border-radius: 0 0 $base-border-radius $base-border-radius;
-			.content-item {
-				width: 90px;
-				height: 66px;
-				border-right: 1px solid $pane-line-color;
-				border-bottom: 1px solid $pane-line-color;
-				float: left;
-				transition: background $med-speed ease-in-out;
-				cursor: pointer;
-				box-sizing: content-box;
-				> * {
-					opacity: .45;
-				}
-				&:nth-last-child(-n+3) {
-					border-bottom: none;
-				}
-				&:nth-child(3n+3) {
-					border-right: none;
-					margin-right: 0;
-				}
-				&:hover {
-					background-color: $light-grey;
-					* {
-						opacity: 1;
-					}
-				}
-				&:active {
-					background-color: darken($light-grey, 5%);
-				}
-				.icon {
-					display: block;
-					text-align: center;
-					margin: 17px auto 7px;
-					transition: opacity $med-speed ease-in-out;
-					svg {
-						max-width: 28px;
-						height: 14px;
-						vertical-align: top;
-					}
-				}
-				.label {
-					display: block;
-					text-align: center;
-					font-size: 12px;
-					line-height: 1em;
-					letter-spacing: .02em;
-					transition: opacity $med-speed ease-in-out;
+		.has-tabs {
+			.content {
+				position: absolute;
+				top: 35px;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				overflow-x: hidden;
+				overflow-y: auto;
+			}
+			&.has-button {
+				.content {
+					bottom: $btn-medium-height;
 				}
 			}
-		} // end .new-content-grid
+		}
 		
 	} // end .ds-pane-content
 
@@ -176,7 +246,7 @@ $pane-line-color: $light-grey;
 
 .pane-transition-leave {
 	transform: scale(1);
-	opacity: 1;
+	opacity: .01;
 	transition: transform $med-speed $ease, opacity $med-speed $ease;
 }
 
@@ -187,56 +257,114 @@ $pane-line-color: $light-grey;
 
 // Next Transition
 .pane-next-transition-enter {
-  opacity: 0.01;
+  opacity: 1;
   position: absolute;
-  left: 0;
+  top: 0;
   right: 0;
-  transition: transform .5s $ease, opacity .5s $ease;
+  bottom: 0;
+  left: 0;
+  transition: transform $slow-speed $ease, opacity $slow-speed $ease;
   transform: translateX(100%);
+  background-color: $pane-bg;
+  z-index: 1;
 }
 
 .pane-next-transition-enter.pane-next-transition-enter-active {
   opacity: 1;
-  position: absolute;
-  left: 0;
-  right: 0;
   transform: translateX(0);
 }
 
 .pane-next-transition-leave {
 	opacity: 1;
-	transition: transform .5s $ease, opacity .5s $ease;
+	position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+	transition: transform $slow-speed $ease, opacity $slow-speed $ease;
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  background: #000;
+	  opacity: 0;
+	  transition: opacity $slow-speed $ease;
+	}
 }
 
 .pane-next-transition-leave.pane-next-transition-leave-active {
 	opacity: 1;
-	transform: translateX(-175%);
+	transform: translateX(-50%);
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  background: #000;
+	  opacity: .1;
+	}
 }
 
 // Prev Transition
 .pane-prev-transition-enter {
-  opacity: 0.01;
+  opacity: 1;
   position: absolute;
-  left: 0;
+  top: 0;
   right: 0;
-  transition: transform .5s $ease, opacity .5s $ease;
+  bottom: 0;
+  left: 0;
+  transition: transform $slow-speed $ease, opacity $slow-speed $ease;
   transform: translateX(-100%);
+  background-color: $pane-bg;
+  z-index: 1;
 }
 
 .pane-prev-transition-enter.pane-prev-transition-enter-active {
   opacity: 1;
-  position: absolute;
-  left: 0;
-  right: 0;
   transform: translateX(0);
 }
 
 .pane-prev-transition-leave {
 	opacity: 1;
-	transition: transform .5s $ease, opacity .5s $ease;
+	position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+	transition: transform $slow-speed $ease, opacity $slow-speed $ease;
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  background: #000;
+	  opacity: 0;
+	  transition: opacity $slow-speed $ease;
+	}
 }
 
 .pane-prev-transition-leave.pane-prev-transition-leave-active {
 	opacity: 1;
-	transform: translateX(175%);
+	transform: translateX(50%);
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  background: #000;
+	  opacity: .1;
+	}
 }

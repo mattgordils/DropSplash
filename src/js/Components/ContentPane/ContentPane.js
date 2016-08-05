@@ -7,6 +7,8 @@ import Pane from 'Components/Common/Pane';
 import Button from 'Components/Common/Button';
 import ContentTypes from 'Components/ContentPane/ContentTypesView';
 
+import 'sass/components/common/add-content-pane';
+
 export default class App extends Component {
 
   constructor (props) {
@@ -31,8 +33,10 @@ export default class App extends Component {
 	render () {
 		return (
 			<Pane
+        paneClass="add-content-pane wide"
         title="Add Content"
         views={this.paneContent()}
+        paneHeight="317px"
         ref="addContent"
         {...this.props}
       />

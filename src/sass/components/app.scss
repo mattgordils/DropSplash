@@ -25,7 +25,7 @@ svg, svg * {
 	position: fixed;
 	top: 0;
 	right: 0;
-	bottom: 49px;
+	bottom: $footer-height - 1px;
 	left: 0;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -101,12 +101,12 @@ svg, svg * {
 	  content: attr(data-tooltip-text);
 	  display: block;
 	  white-space: nowrap;
-	  background: rgba(0, 0, 0, .7);
+	  background: $text-color;
 	  color: $white;
 	  position: absolute;
 	  line-height: 1.4em !important;
 	  text-transform: none;
-	  padding: 7px;
+	  padding: 7px 9px;
 	  border-radius: 3px;
 	  opacity: 0;
 	  visibility: hidden;

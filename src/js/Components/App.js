@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Button from 'Components/Common/Button';
 import PlusIcon from 'assets/icons/plus-icon';
+import CheckIcon from 'assets/icons/check';
 import TypePane from 'Components/TypePane/TypePane';
 import ContentPane from 'Components/ContentPane/ContentPane';
 import Switch from 'Components/Common/Switch';
@@ -9,12 +10,15 @@ import BackgroundContent from 'Components/Common/BackgroundContent';
 import FooterNav from 'Components/FooterNav';
 import AddContentBetween from 'Components/Common/AddContentBetween';
 import PageSection from 'Components/Common/PageSection';
+import Pane from 'Components/Common/Pane';
+import Modal from 'Components/Modal/Modal';
 
 import InlineSVG from 'svg-inline-react/lib';
 
 import EditOptions from 'Components/Common/EditOptions'
 
 import 'sass/components/app';
+import 'sass/components/common/font-pane-view';
 
 export default class App extends Component {
 
@@ -24,44 +28,343 @@ export default class App extends Component {
         this.setState({buttonClass: currentClass});
 	}
 
+	paneLinkAccount () {
+    return [
+    	(
+    		<div className="has-button" key="view1">
+					<div className="content pane-padded">
+						<div className="row">
+							<label>Username</label>
+			        <input disabled="disabled" className="lg" type="text" value="dropsplash123" />
+		        </div>
+		        <div className="row">
+							<label>Password</label>
+			        <input className="lg" type="password" />
+		        </div>
+		      </div>
+		      <div className="pane-view-actions">
+		        <Button
+		        	buttonClass="medium"
+		        	label="Link Account" 
+		        	clickEvent={this.props.clickHandler} 
+		        />
+	        </div>
+		    </div>
+    	)
+    ]
+	}
+
+	paneLinkSuccess () {
+    return [
+    	(
+    		<div className="has-button" key="view1">
+					<div className="content pane-padded">
+						<span class="small-caps">Linked Account</span>
+						<p>Instagram</p>
+		      </div>
+		      <div className="pane-view-actions">
+		        <Button
+		        	buttonClass="medium tertiary"
+		        	label="Edit Account Info" 
+		        	clickEvent={this.props.clickHandler} 
+		        />
+	        </div>
+		    </div>
+    	)
+    ]
+	}
+
+	backgroundPaneViews () {
+    return [
+    	(
+    		<div className="has-button has-tabs" key="view1">
+    			<div className="ds-pane-tabs small-caps">
+	    			<div className="tab active">
+	    				Image
+	    			</div>
+	    			<div className="tab">
+	    				Video
+	    			</div>
+	    			<div className="tab">
+	    				Color
+	    			</div>
+	    			<hr/>
+    			</div>
+					<div className="content pane-padded">
+						<span class="small-caps">Linked Account</span>
+						<p>Instagram</p>
+		      </div>
+		      <div className="pane-view-actions">
+		        <Button
+		        	buttonClass="medium"
+		        	icon={CheckIcon}
+		        	clickEvent={this.props.clickHandler} 
+		        />
+	        </div>
+		    </div>
+    	)
+    ]
+	}
+
+	fontsPaneView () {
+    return [
+    	(
+    		<div className="has-tabs" key="view1">
+    			<div className="ds-pane-tabs four-tabs small-caps">
+	    			<div className="tab">
+	    				All
+	    			</div>
+	    			<div className="tab active">
+	    				Sans
+	    			</div>
+	    			<div className="tab">
+	    				Serif
+	    			</div>
+	    			<div className="tab">
+	    				Mono
+	    			</div>
+	    			<hr/>
+    			</div>
+					<div className="content">
+						<form>
+							<ul className="font-list">
+								<li>
+									<input type="radio" name="font" id="roboto"/>
+									<label htmlFor="roboto">
+										<span className="font-name">Roboto RobotoRoboto Roboto</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="merriweather"/>
+									<label htmlFor="merriweather">
+										<span className="font-name">Merriweather</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="space-mono"/>
+									<label htmlFor="space-mono">
+										<span className="font-name">Space Mono</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="league-gothic"/>
+									<label htmlFor="league-gothic">
+										<span className="font-name">League Gothic</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="Montserrat"/>
+									<label htmlFor="Montserrat">
+										<span className="font-name">Montserrat</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="Bagnard"/>
+									<label htmlFor="Bagnard">
+										<span className="font-name">Bagnard</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="work-sans"/>
+									<label htmlFor="work-sans">
+										<span className="font-name">Work Sans</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="roboto"/>
+									<label htmlFor="roboto">
+										<span className="font-name">Roboto RobotoRoboto Roboto</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="merriweather"/>
+									<label htmlFor="merriweather">
+										<span className="font-name">Merriweather</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="space-mono"/>
+									<label htmlFor="space-mono">
+										<span className="font-name">Space Mono</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="league-gothic"/>
+									<label htmlFor="league-gothic">
+										<span className="font-name">League Gothic</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="Montserrat"/>
+									<label htmlFor="Montserrat">
+										<span className="font-name">Montserrat</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="Bagnard"/>
+									<label htmlFor="Bagnard">
+										<span className="font-name">Bagnard</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="work-sans"/>
+									<label htmlFor="work-sans">
+										<span className="font-name">Work Sans</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="roboto"/>
+									<label htmlFor="roboto">
+										<span className="font-name">Roboto RobotoRoboto Roboto</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="merriweather"/>
+									<label htmlFor="merriweather">
+										<span className="font-name">Merriweather</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="space-mono"/>
+									<label htmlFor="space-mono">
+										<span className="font-name">Space Mono</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="league-gothic"/>
+									<label htmlFor="league-gothic">
+										<span className="font-name">League Gothic</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="Montserrat"/>
+									<label htmlFor="Montserrat">
+										<span className="font-name">Montserrat</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="Bagnard"/>
+									<label htmlFor="Bagnard">
+										<span className="font-name">Bagnard</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="work-sans"/>
+									<label htmlFor="work-sans">
+										<span className="font-name">Work Sans</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="roboto"/>
+									<label htmlFor="roboto">
+										<span className="font-name">Roboto RobotoRoboto Roboto</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="merriweather"/>
+									<label htmlFor="merriweather">
+										<span className="font-name">Merriweather</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="space-mono"/>
+									<label htmlFor="space-mono">
+										<span className="font-name">Space Mono</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="league-gothic"/>
+									<label htmlFor="league-gothic">
+										<span className="font-name">League Gothic</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="Montserrat"/>
+									<label htmlFor="Montserrat">
+										<span className="font-name">Montserrat</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="Bagnard"/>
+									<label htmlFor="Bagnard">
+										<span className="font-name">Bagnard</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+								<li>
+									<input type="radio" name="font" id="work-sans"/>
+									<label htmlFor="work-sans">
+										<span className="font-name">Work Sans</span>
+										<span className="selected-check"></span>
+										<span className="style-count">8 Styles</span>
+									</label>
+								</li>
+							</ul>
+						</form>
+		      </div>
+		    </div>
+    	)
+    ]
+	}
+
 	render () {
 		return (
 			<div>
+
 				<div className="app-content">
-					
-					<PageSection 
-						initialBlock="true"
-						overlayColor="#000000"
-						overlayOpacity=".3"
-						backgroundImage="http://unsplash.it/2000x1500"
-						// backgroundImage="assets/images/0.jpg"
-						{...this.props}
-					/>
-
-					<PageSection 
-						height="80px"
-						overlayColor="#f3f3f3"
-						overlayOpacity="1"
-						textColor="#444"
-						{...this.props}
-					/>
-
-					<PageSection 
-						empty="true"
-						{...this.props}
-					/>
-
-					<PageSection 
-						alignment="left"
-						contentWidth="400px"
-						height="500px"
-						textColor="#16E1B9"
-						// contentOpacity=".5"
-						overlayColor="#000000"
-						overlayOpacity=".8"
-						backgroundImage="http://unsplash.it/1500x1500"
-						{...this.props}
-					/>
 
 					<div className="ds-page-section">
 						<h1> Hello World </h1> 
@@ -145,6 +448,39 @@ export default class App extends Component {
 						<ContentPane />
 						<TypePane />
 
+						<Pane
+								paneClass="wide"
+                title="Background"
+                views={this.backgroundPaneViews()}
+                paneHeight="317px"
+                ref="backgroundView"
+                {...this.props}
+            />
+
+            <Pane
+								paneClass="wide"
+                title="Fonts"
+                views={this.fontsPaneView()}
+                paneHeight="calc(100vh - 90px)"
+                ref="backgroundView"
+                {...this.props}
+            />
+
+						<Pane
+								paneClass="add-content-pane"
+                title="Instagram"
+                views={this.paneLinkAccount()}
+                ref="instagramView"
+                {...this.props}
+            />
+
+            <Pane
+                title="Instagram"
+                views={this.paneLinkSuccess()}
+                ref="typeView"
+                {...this.props}
+            />
+
 						<div className="button-group three-buttons">
 							<Button
 								buttonClass="medium"
@@ -169,6 +505,40 @@ export default class App extends Component {
 						<Switch />
 
 					</div>
+
+					<PageSection 
+						initialBlock="true"
+						overlayColor="#000000"
+						overlayOpacity=".3"
+						backgroundImage="http://unsplash.it/2001x1500"
+						// backgroundImage="assets/images/0.jpg"
+						{...this.props}
+					/>
+
+					<PageSection 
+						height="80px"
+						overlayColor="#f3f3f3"
+						overlayOpacity="1"
+						textColor="#444"
+						{...this.props}
+					/>
+
+					<PageSection 
+						empty="true"
+						{...this.props}
+					/>
+
+					<PageSection 
+						alignment="left"
+						contentWidth="400px"
+						height="500px"
+						textColor="#16E1B9"
+						// contentOpacity=".5"
+						overlayColor="#000000"
+						overlayOpacity=".8"
+						backgroundImage="http://unsplash.it/1500x1500"
+						{...this.props}
+					/>
 
 				</div>
 				<FooterNav/>
