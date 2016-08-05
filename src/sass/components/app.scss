@@ -30,6 +30,7 @@ svg, svg * {
 	overflow-x: hidden;
 	overflow-y: auto;
 	background: #e5e5e5;
+	transition: left $med-speed $ease;
 
 	.ds-page-section {
 		background: $white;

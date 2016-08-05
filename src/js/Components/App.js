@@ -25,6 +25,7 @@ import 'sass/components/app';
 import 'sass/components/login';
 import 'sass/components/common/font-pane-view';
 import 'sass/components/ds-landing';
+import 'sass/components/settings';
 
 export default class App extends Component {
 
@@ -370,7 +371,17 @@ export default class App extends Component {
 		return (
 			<div>
 
-				<div className="app-content">
+				<div className="settings-panel">
+					<div className="settings-block">
+						<span className="panel-title small-caps">Settings</span>
+					</div>
+					<div className="settings-block">
+						<span className="settings-block-title small-caps">Account</span>
+
+					</div>
+				</div>
+
+				<div className="app-content settings-open">
 
 					<div className="ds-page-section ds-landing">
 						<div className="section-content">
@@ -392,7 +403,7 @@ export default class App extends Component {
 									<h6 className="small-caps">Password recovery</h6>
 									<p>Please enter the email address that you used when creating your account.</p>
 								</div>
-								<div className="login-input-wrap">
+								<div className="fancy-input-wrap">
 									<input className="login-input" required type="text" />
 									<label>Email</label>
 								</div>
@@ -405,15 +416,15 @@ export default class App extends Component {
 					<div className="ds-page-section ds-login">
 						<div className="v-center">
 							<div className="ds-login-form">
-								<div className="login-input-wrap">
+								<div className="fancy-input-wrap">
 									<input className="login-input" required type="text" />
 									<label>Email</label>
 								</div>
-								<div className="login-input-wrap">
+								<div className="fancy-input-wrap">
 									<input className="login-input" required type="password" />
 									<label>Password</label>
 								</div>
-								<div className="login-input-wrap">
+								<div className="fancy-input-wrap">
 									<input className="login-input" required type="password" />
 									<label>Confirm Password</label>
 								</div>
@@ -439,11 +450,11 @@ export default class App extends Component {
 					<div className="ds-page-section ds-login">
 						<div className="v-center">
 							<div className="ds-login-form">
-								<div className="login-input-wrap">
+								<div className="fancy-input-wrap">
 									<input className="login-input" required type="text" />
 									<label>Email</label>
 								</div>
-								<div className="login-input-wrap">
+								<div className="fancy-input-wrap">
 									<input className="login-input" required type="password" />
 									<label>Password</label>
 								</div>
