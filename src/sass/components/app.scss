@@ -31,6 +31,9 @@ svg, svg * {
 	overflow-y: auto;
 	background: #e5e5e5;
 	transition: left $slow-speed $ease;
+	&.settings-open {
+		left: 400px;
+	}
 
 	.ds-page-section {
 		background: $white;
