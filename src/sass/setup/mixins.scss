@@ -1,3 +1,8 @@
+// Media Queries
+@mixin respond($breakpoint) {
+  @media only screen and (min-width: $breakpoint + px) { @content; }
+}
+
 @mixin font-smooth() {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -4,6 +4,7 @@ import Button from 'Components/Common/Button';
 import PlusIcon from 'assets/icons/plus-icon';
 import CheckIcon from 'assets/icons/check';
 import BackArrow from 'assets/icons/arrow-2-back';
+import DSLogo from 'assets/icons/temp-logo';
 import TwitterIcon from 'assets/icons/twitter';
 import GoogleIcon from 'assets/icons/twitter';
 import TypePane from 'Components/TypePane/TypePane';
@@ -23,6 +24,7 @@ import EditOptions from 'Components/Common/EditOptions'
 import 'sass/components/app';
 import 'sass/components/login';
 import 'sass/components/common/font-pane-view';
+import 'sass/components/ds-landing';
 
 export default class App extends Component {
 
@@ -370,6 +372,19 @@ export default class App extends Component {
 
 				<div className="app-content">
 
+					<div className="ds-page-section ds-landing">
+						<div className="section-content">
+							<div className="container">
+								<InlineSVG src={DSLogo} element="span" className="logo" />
+								<p>Easy, elegant, one page websites (splash pages). <br/>Sign up and we will give you a heads up when we launch.</p>
+								<form className="newsletter-form">
+									<input type="text" id="newsletter" placeholder="drop@splash.com" />
+									<button className="medium" htmlFor="newsletter">Let me know</button>
+								</form>
+							</div>
+						</div>
+					</div>
+
 					<div className="ds-page-section ds-login">
 						<div className="v-center">
 							<div className="ds-login-form">
@@ -381,7 +396,7 @@ export default class App extends Component {
 									<input className="login-input" required type="text" />
 									<label>Email</label>
 								</div>
-								<Button buttonClass="medium login" label="Sign Up" />
+								<Button buttonClass="medium login" label="Send Recovery Email" />
 								<Button buttonClass="medium tertiary" label="Back to login" icon={BackArrow} />
 							</div>
 						</div>
