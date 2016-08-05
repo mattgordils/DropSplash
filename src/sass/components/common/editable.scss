@@ -1,19 +1,5 @@
 @import 'setup/variables';
 
-h1 {
-	font-size: 50px;
-	display: inline-block;
-	margin: 0 auto;
-	line-height: 1.333em;
-	font-family: 'Work Sans', sans-serif;
-	font-weight: 600;
-}
-
-P {
-	font-family: 'Cotham Sans', sans-serif;
-	letter-spacing: .02em;
-}
-
 .ds-editable {
 	[contenteditable="true"]:active,
 	[contenteditable="true"]:focus{
@@ -24,6 +10,20 @@ P {
 	position: relative;
 	cursor: pointer;
 	margin: 10px 0;
+	// For testing
+	h1 {
+		font-size: 50px;
+		display: inline-block;
+		margin: 0 auto;
+		line-height: 1.333em;
+		font-family: 'Work Sans', sans-serif;
+		font-weight: 600;
+	}
+
+	p {
+		font-family: 'Cotham Sans', sans-serif;
+		letter-spacing: .02em;
+	}
 	&:after {
 		content: '';
 		display: block;

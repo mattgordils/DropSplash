@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import Button from 'Components/Common/Button';
 import PlusIcon from 'assets/icons/plus-icon';
 import CheckIcon from 'assets/icons/check';
+import BackArrow from 'assets/icons/arrow-2-back';
+import TwitterIcon from 'assets/icons/twitter';
+import GoogleIcon from 'assets/icons/twitter';
 import TypePane from 'Components/TypePane/TypePane';
 import ContentPane from 'Components/ContentPane/ContentPane';
 import Switch from 'Components/Common/Switch';
@@ -18,6 +21,7 @@ import InlineSVG from 'svg-inline-react/lib';
 import EditOptions from 'Components/Common/EditOptions'
 
 import 'sass/components/app';
+import 'sass/components/login';
 import 'sass/components/common/font-pane-view';
 
 export default class App extends Component {
@@ -365,6 +369,95 @@ export default class App extends Component {
 			<div>
 
 				<div className="app-content">
+
+					<div className="ds-page-section ds-login">
+						<div className="v-center">
+							<div className="ds-login-form">
+								<div className="login-intro">
+									<h6 className="small-caps">Password recovery</h6>
+									<p>Please enter the email address that you used when creating your account.</p>
+								</div>
+								<div className="login-input-wrap">
+									<input className="login-input" required type="text" />
+									<label>Email</label>
+								</div>
+								<Button buttonClass="medium login" label="Sign Up" />
+								<Button buttonClass="medium tertiary" label="Back to login" icon={BackArrow} />
+							</div>
+						</div>
+					</div>
+
+					<div className="ds-page-section ds-login">
+						<div className="v-center">
+							<div className="ds-login-form">
+								<div className="login-input-wrap">
+									<input className="login-input" required type="text" />
+									<label>Email</label>
+								</div>
+								<div className="login-input-wrap">
+									<input className="login-input" required type="password" />
+									<label>Password</label>
+								</div>
+								<div className="login-input-wrap">
+									<input className="login-input" required type="password" />
+									<label>Confirm Password</label>
+								</div>
+								<Button buttonClass="medium login" label="Sign Up" />
+								<span className="alt-login-divider small-caps">Or sign up with</span>
+								<Button 
+									buttonClass="medium google-login"
+									label="Google"
+								/>
+								<Button 
+									buttonClass="medium twitter-login"
+									label="Twitter"
+								/>
+								<Button 
+									buttonClass="medium facebook-login"
+									label="Facebook"
+								/>
+							</div>
+						</div>
+						<p className="ds-signup-prompt">Already have an account? <Button buttonClass="tiny secondary" label="Login" /></p>
+					</div>
+
+					<div className="ds-page-section ds-login">
+						<div className="v-center">
+							<div className="ds-login-form">
+								<div className="login-input-wrap">
+									<input className="login-input" required type="text" />
+									<label>Email</label>
+								</div>
+								<div className="login-input-wrap">
+									<input className="login-input" required type="password" />
+									<label>Password</label>
+								</div>
+								<div className="login-row">
+									<div className="remember-me">
+										<input type="checkbox" checked="checked" id="remember-me" /><label htmlFor="remember-me"><span className="checkbox"></span>Remember me</label>
+									</div>
+									<a className="forgot" href="#">Forgot Password?</a>
+								</div>
+								<Button buttonClass="medium login" label="Login" />
+								<span className="alt-login-divider small-caps">Or login with</span>
+								<div className="login-with">
+									<Button 
+										buttonClass="medium google-login"
+										label="Google"
+									/>
+									<Button 
+										buttonClass="medium twitter-login"
+										label="Twitter"
+									/>
+									<Button 
+										buttonClass="medium facebook-login"
+										label="Facebook"
+									/>
+								</div>
+							</div>
+						</div>
+						<p className="ds-signup-prompt">Dont have an account? <Button buttonClass="tiny secondary" label="Sign Up" /></p>
+					</div>
 
 					<div className="ds-page-section">
 						<h1> Hello World </h1> 

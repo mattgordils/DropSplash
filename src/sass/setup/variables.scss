@@ -68,7 +68,7 @@ $btn-hover-border: none;
 $secondary-btn-border: none;
 $secondary-btn-bg : $text-color;
 $secondary-btn-color : $bg-color;
-$secondary-btn-hover-bg : $text-color;
+$secondary-btn-hover-bg : #000;
 $secondary-btn-border-radius : 60px;
 $secondary-btn-hover-color : $primary-color;
 $secondary-btn-hover-border: none;
@@ -76,7 +76,7 @@ $secondary-btn-hover-border: none;
 // Tertiary Button
 $tertiary-btn-border: none;
 $tertiary-btn-bg : $light-grey;
-$tertiary-btn-color : $light-text-color;
+$tertiary-btn-color : lighten($text-color, 30%);
 $tertiary-btn-hover-bg : darken($light-grey, 5%);
 $tertiary-btn-border-radius : 60px;
 $tertiary-btn-hover-color : $text-color;
