@@ -8,6 +8,7 @@ import DSLogo from 'assets/icons/temp-logo';
 import InstagramIcon from 'assets/icons/instagram';
 import TypePane from 'Components/TypePane/TypePane';
 import BackgroundPane from 'Components/BackgroundPane/BackgroundPane';
+import SectionSettingsPane from 'Components/SectionSettingsPane/SectionSettingsPane'
 import ContentPane from 'Components/ContentPane/ContentPane';
 import Switch from 'Components/Common/Switch';
 import BackgroundContent from 'Components/Common/BackgroundContent';
@@ -438,6 +439,8 @@ export default class App extends Component {
 
 							<ContentPane />
 							<TypePane />
+
+							<SectionSettingsPane />
 
 							<BackgroundPane />
 

@@ -4,9 +4,9 @@ import React, { Component } from 'react';
 import InlineSVG from 'svg-inline-react/lib';
 
 import Pane from 'Components/Common/Pane';
-import ImageBackground from 'Components/BackgroundPane/ImageBackgroundView';
-import VideoBackground from 'Components/BackgroundPane/VideoBackgroundView';
-import ColorBackground from 'Components/BackgroundPane/ColorBackgroundView';
+import TypographyView from 'Components/TypePane/TypePaneView';
+import EffectsView from 'Components/SectionSettingsPane/EffectsView';
+import LayoutView from 'Components/SectionSettingsPane/LayoutView';
 
 export default class App extends Component {
 
@@ -22,9 +22,9 @@ export default class App extends Component {
 
     paneContent () {
         return [
-            // (<ImageBackground key="1" title="view 1" clickHandler={this.clickHandler.bind(this)} />),
-            (<VideoBackground key="2" title="view 2" clickHandler={this.clickHandler.bind(this)} />),
-            (<ColorBackground key="3" title="view 3" clickHandler={this.clickHandler.bind(this)} />)
+            (<TypographyView key="1" title="view 1" clickHandler={this.clickHandler.bind(this)} />),
+            (<EffectsView key="2" title="view 2" clickHandler={this.clickHandler.bind(this)} />),
+            (<LayoutView key="3" title="view 3" clickHandler={this.clickHandler.bind(this)} />)
         ]
     }
 
@@ -33,10 +33,10 @@ export default class App extends Component {
 			<Pane
                 paneClass="wide"
                 paneHeight="317px"
-                title="Background"
+                title="Section Settings"
                 views={this.paneContent()}
                 ref="backgroundPane"
-                paneTabs={['Image', 'Video', 'Color']}
+                paneTabs={['Type', 'Effects', 'Layout']}
                 {...this.props}
             />
 		);

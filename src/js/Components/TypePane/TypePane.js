@@ -6,8 +6,6 @@ import InlineSVG from 'svg-inline-react/lib';
 import Pane from 'Components/Common/Pane';
 import TypePaneView from 'Components/TypePane/TypePaneView';
 
-import 'sass/components/common/modal';
-
 export default class App extends Component {
 
     constructor (props) {
