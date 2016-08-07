@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Button from 'Components/Common/Button';
 import PlusIcon from 'assets/icons/plus-icon';
 import InlineSVG from 'svg-inline-react/lib';
+import ColorPicker from 'Components/Common/ColorPicker/ColorPicker';
 
 import 'sass/components/common/inputs';
 
@@ -18,8 +19,8 @@ export default class App extends Component {
 	      </div>
 	      <div className="pane-view-actions">
 	        <Button
-	        	buttonClass="medium tertiary"
-	        	label="Edit account info"
+	        	buttonClass="medium hollow"
+	        	label="Add Color Overlay"
 	        	clickEvent={this.props.clickHandler}
 	        />
         </div>

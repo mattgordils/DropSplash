@@ -34,6 +34,7 @@
     "react": "^0.14.6",
     "react-addons-css-transition-group": "^0.14.8",
     "react-addons-transition-group": "^0.14.8",
+    "react-color": "^2.2.2",
     "react-dom": "^0.14.6",
     "svg-inline-loader": "^0.4.0",
     "svg-inline-react": "^0.3.1",

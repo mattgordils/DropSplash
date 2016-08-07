@@ -21,9 +21,17 @@ export default class App extends Component {
     }
 
     paneContent () {
+        if (this.props.view === 'image') {
+            return [
+                (<ImageBackground key="1" title="view 1" clickHandler={this.clickHandler.bind(this)} />)
+            ]    
+        }
+        if (this.props.view === 'video') {
+            return [
+                (<VideoBackground key="2" title="view 2" clickHandler={this.clickHandler.bind(this)} />)
+            ]    
+        }
         return [
-            // (<ImageBackground key="1" title="view 1" clickHandler={this.clickHandler.bind(this)} />),
-            (<VideoBackground key="2" title="view 2" clickHandler={this.clickHandler.bind(this)} />),
             (<ColorBackground key="3" title="view 3" clickHandler={this.clickHandler.bind(this)} />)
         ]
     }

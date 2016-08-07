@@ -19,6 +19,10 @@ import Pane from 'Components/Common/Pane';
 import Modal from 'Components/Modal/Modal';
 import Settings from 'Components/Settings';
 
+import ImageBackground from 'Components/BackgroundPane/ImageBackgroundView';
+import VideoBackground from 'Components/BackgroundPane/VideoBackgroundView';
+import ColorBackground from 'Components/BackgroundPane/ColorBackgroundView';
+
 import InlineSVG from 'svg-inline-react/lib';
 
 import EditOptions from 'Components/Common/EditOptions'
@@ -442,6 +446,8 @@ export default class App extends Component {
 
 							<SectionSettingsPane />
 
+							<BackgroundPane view="image" />
+							<BackgroundPane view="video" />
 							<BackgroundPane />
 
 	            <Pane

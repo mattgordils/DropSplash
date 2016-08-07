@@ -221,6 +221,15 @@
 				right: 0;
 				.button {
 					border-radius: 0;
+					&.hollow {
+						border-top: 1px solid $light-grey;
+						background-color: transparent;
+						color: $light-text-color;
+						&:hover {
+							color: $text-color;
+							background-color: $light-grey;
+						}
+					}
 				}
 				&.two-actions {
 					@include clearfix();
@@ -245,7 +254,7 @@
 				overflow-x: hidden;
 				overflow-y: auto;
 			}
-			&.has-button {
+			.has-button {
 				.content {
 					bottom: $btn-medium-height;
 				}
