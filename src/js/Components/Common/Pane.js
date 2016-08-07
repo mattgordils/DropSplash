@@ -50,6 +50,9 @@ export default class App extends Component {
     if (this.props.paneClass) {
       paneClass += ' '+this.props.paneClass;
     }
+    if (this.props.paneTabs) {
+      paneClass += ' '+'has-tabs';
+    }
     return paneClass;
   }
 
@@ -58,6 +61,26 @@ export default class App extends Component {
 	  	height: this.props.paneHeight
 	  }
 	  return paneStyle
+  }
+
+  paneTabs () {
+  	var tabs = this.props.paneTabs;
+  	if (this.props.paneTabs) {
+  		return (
+  			<div className="ds-pane-tabs small-caps">
+	  			<div className="tab active">
+	  				{tabs[0]}
+	  			</div>
+	  			<div className="tab">
+	  				{tabs[1]}
+	  			</div>
+	  			<div className="tab">
+	  				{tabs[2]}
+	  			</div>
+	  			<hr/>
+				</div>
+			)
+  	}
   }
 
 	render () {
@@ -77,6 +100,7 @@ export default class App extends Component {
 					</div>
 
 					<div className="ds-pane-content">
+						{this.paneTabs()}
 						<ReactCSSTransitionGroup 
 							transitionName={this.state.transitionDirection}
 							transitionEnterTimeout={550}

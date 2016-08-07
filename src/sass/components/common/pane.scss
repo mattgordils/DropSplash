@@ -22,6 +22,26 @@
 		width: 272px;
 	}
 
+	.ds-empty-content {
+		display: block;
+		max-width: none;
+		width: auto;
+	}
+
+	p {
+		font-size: 14px;
+		margin: 0;
+		line-height: 1.5em;
+		&.sm {
+			letter-spacing: .02em;
+			font-size: 12px;
+		}
+		&.xsm {
+			letter-spacing: .05em;
+			font-size: 10px;
+		}
+	}
+
 	.ds-pane-header {
 		position: relative;
 		border-bottom: 1px solid $pane-line-color;
@@ -70,6 +90,7 @@
 		background: $pane-bg;
 		text-align: left;
 		position: relative;
+		z-index: 1;
 		@include clearfix();
 		&.four-tabs {
 			hr,
@@ -210,8 +231,11 @@
 				}
 			}
 		}
+		
+	} // end .ds-pane-content
 
-		.has-tabs {
+	&.has-tabs {
+		.ds-pane-content {
 			.content {
 				position: absolute;
 				top: 35px;
@@ -227,8 +251,7 @@
 				}
 			}
 		}
-		
-	} // end .ds-pane-content
+	}
 
 } // end .ds-pane
 

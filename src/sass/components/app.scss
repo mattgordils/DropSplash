@@ -165,3 +165,20 @@ svg, svg * {
 		}
 	}
 }
+
+.v-center {
+	display: table;
+	width: 100%;
+	height: 100%;
+	.v-content {
+		vertical-align: middle;
+		text-align: center;
+		display: table-cell;
+	}
+}
+
+.hidden {
+	display: none !important;
+	opacity: 0 !important;
+	visibiltiy: hidden !important;
+}
