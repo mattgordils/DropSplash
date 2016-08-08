@@ -1,0 +1,49 @@
+@import 'setup/variables';
+
+.ds-pane {
+	margin: 30px;
+}
+
+.color-picker {
+	> * {
+		border-radius: 0 !important;
+		box-shadow: none !important;
+		width: auto !important;
+		font-family: $main-font !important;
+		> div:first-of-type {
+			border-radius: 0 !important;
+			padding-bottom: 30% !important;
+			> div:first-of-type {
+				border-radius: 0 !important;
+			}
+			+ div {
+				padding: ($pane-padding - 2px) $pane-padding !important;
+				> div:last-of-type {
+					padding-top: 10px !important;
+				}
+			}
+		}
+	}
+	input {
+		webkit-appearance: none !important;
+		height: 30px !important;
+		font-family: $main-font !important;
+		border-radius: $input-border-radius !important;
+		font-size: 12px !important;
+		transition: border $med-speed $ease;
+		box-shadow: none !important;
+		border: $input-border !important;
+		&:focus {
+			border-color: $primary-color !important;
+			outline: none !important;
+		}
+		+ span {
+			margin-top: 7px !important;
+			font-size: 9px !important;
+			line-height: 9px !important;
+		  letter-spacing: .175em;
+		  text-transform: uppercase;
+		  font-weight: 500;
+		}
+	}
+}
