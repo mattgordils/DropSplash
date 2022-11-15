@@ -1,4 +1,9 @@
-// import { useState } from 'react'
+import '@wordpress/components/build-style/style.css';
+import '@wordpress/block-editor/build-style/style.css';
+import '@wordpress/block-library/build-style/style.css';
+import '@wordpress/block-library/build-style/editor.css';
+import '@wordpress/block-library/build-style/theme.css';
+import { registerCoreBlocks } from '@wordpress/block-library';
 import {
 	BlockEditorProvider,
 	BlockList,
@@ -14,8 +19,8 @@ const BlockEditor = () => {
   return (
     <BlockEditorProvider
 			value={ blocks }
-			// onInput={ ( blocks ) => console.log( blocks ) }
-			// onChange={ ( blocks ) => console.log( blocks ) }
+			onInput={ ( blocks ) => console.log( blocks ) }
+			onChange={ ( blocks ) => console.log( blocks ) }
 		>
 			<SlotFillProvider>
 				<BlockTools>
@@ -31,4 +36,6 @@ const BlockEditor = () => {
   )
 }
 
+
+registerCoreBlocks();
 export default BlockEditor
