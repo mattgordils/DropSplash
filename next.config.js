@@ -1,6 +1,24 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+	enabled: process.env.ANALYZE === "true",
+});
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer({
+	webpack(config) {
+		config.module.rules.push({
+			test: /\.svg$/,
+			use: ['@svgr/webpack'],
+		})
+		config.module.rules.push({
+			test: /\.(png|gif|woff|woff2|eot|ttf)$/,
+			loader: 'url-loader',
+		})
+		config.module.rules.push({
+			test: /\.(png|gif|jpg|jpeg)$/,
+			loader: 'file-loader',
+		})
+		return config
+	},
+	experimental: {
+		esmExternals: false
+	}
+})

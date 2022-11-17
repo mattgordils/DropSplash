@@ -5,12 +5,17 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Dropsplash</title>
+        <title>Dropsplash | Login</title>
         <meta name="description" content="Build and launch a splash page in minutes" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <h1>Log In</h1>
 
-      <PageBuilder/>
+      <form action="">
+        <input type="text" />
+        <input type="password" />
+        <button>Sign up with Google</button>
+      </form>
     </div>
   )
 }
