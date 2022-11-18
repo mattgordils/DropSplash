@@ -18,13 +18,25 @@ const Wrapper = styled.div`
     pointer-events: none;
   }
   &:hover {
-    &:after {
-      opacity: .15;
-    }
     .action-menu {
       display: block;
     }
   }
+  ${ ({ focused }) => focused ? `
+    &:after {
+      opacity: 1;
+      border-color: var(--main-color);
+    }
+    .action-menu {
+      display: block;
+    }
+  ` : `
+    &:hover {
+      &:after {
+        opacity: .15;
+      }
+    }
+  ` }
 `
 
 const ActionMenu = styled.div`
@@ -36,8 +48,8 @@ const ActionMenu = styled.div`
   display: none;
 `
 
-const BlockWrapper = ({ className, children, removeBlock }) => (
-  <Wrapper className={className}>
+const BlockWrapper = ({ className, children, removeBlock, focused }) => (
+  <Wrapper className={className} focused={focused}>
     {children}
     <ActionMenu className='action-menu' >
       <button onClick={removeBlock}>Delete</button>

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import PageBuilder from 'components/PageBuilder'
+import LoginButtonGoogle from 'components/LoginButtonGoogle'
 
 export default function Home() {
   return (
@@ -12,9 +12,7 @@ export default function Home() {
       <h1>Log In</h1>
 
       <form action="">
-        <input type="text" />
-        <input type="password" />
-        <button>Sign up with Google</button>
+        <LoginButtonGoogle />
       </form>
     </div>
   )

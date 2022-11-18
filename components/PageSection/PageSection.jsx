@@ -4,8 +4,8 @@ import BlockEditable from 'components/BlockEditable'
 import BlockImage from 'components/BlockImage'
 
 const Wrapper = styled.div`
-  height: 100vh;
-  width: 80%;
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,15 +13,14 @@ const Wrapper = styled.div`
 `
 
 const HtmlPreview = styled.div`
-  height: 100vh;
   position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  top: 20px;
+  right: 20px;
   width: 20%;
   background: #eee;
-  border-left: 1px solid #ddd;
+  border: 1px solid #ddd;
   padding: 10px;
+  border-radius: 10px;
   font-family: monospace;
 `
 
@@ -110,7 +109,8 @@ const PageBuilder = ({ className }) => {
           </div>
         ) : (
           <div>
-            <h2>Get Started</h2>
+            <h1>Get Started</h1>
+            <p>Add your first pieces of content and create your first splash page.</p>
             <ContentAddActions/>
           </div>
         )}
@@ -118,7 +118,15 @@ const PageBuilder = ({ className }) => {
     </Wrapper>
 
     <HtmlPreview>
-      {`<DOCTYPE>`}
+      {`
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+          </head>
+        </html>
+      `}
       {blocks.map(item => {
         const Component = componentMap[item.type].component
         return (

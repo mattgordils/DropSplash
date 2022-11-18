@@ -1,26 +1,89 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-family: 'UI Font';
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+:root {
+  /* Colors */
+  --black: #222;
+  --white: #ffffff;
+  --main-color: #0FC5A3;
+  --alert: red;
+  --notify: yellow;
+  --success: green;
+  --bg-color: var(--white);
+    --bg-color-rgb: 255, 255, 255;
+  --text-color: var(--black);
+    --text-color-rgb: 51, 51, 51;
+  --light-text-color: #818181;
+  --light-grey: #eee;
+  --hr-color: rgba(var(--text-color-rgb, .07));
+  /* Spacing */
+  --site-gutters: 16px;
+  --site-margins: clamp(16px, 4vw, 100px);
+  --vertical-spacing-small: clamp(30px, 3vw, 60px);
+  --vertical-spacing: clamp(60px, 6vw, 120px);
+  --vertical-spacing-large: clamp(90px, 9vw, 160px);
+  /* Typography */
+  --main-font: 'UI Font', sans-serif;
+  --secondary-font: var(--main-font);
+  --mono-font: monospace;
+  --normal: normal;
+  --light: 300;
+  --medium: 600;
+  --bold: 700;
+  /* UI */
+  --base-border-radius: 10px;
+  --screen-height: 100vh; /* Adjust screen height for when there is announcement bar etc. */
+  --button-height: 40px;
+  --header-height: 60px;
+  --sticky-top: calc(var(--site-gutters) + var(--header-height));
+  /* Animations */
+  --md-speed: .3s;
+  --slow-speed: .5s;
+  --fast-speed: .15s;
 }
 
-* {
-  box-sizing: border-box;
+button,
+.button {
+  --button-bg: var(--main-color);
+	--button-color: var(--bg-color);
+	--button-border-weight: 1px;
+	--button-border-color: var(--main-color);
+	appearance: none;
+	cursor: pointer;
+	min-width: 200px;
+	height: var(--button-height);
+	font-family: var(--main-font);
+	font-weight: var(--medium);
+	font-size: 14px;
+	letter-spacing: 0.05em;
+	line-height: 1em;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 calc(var(--button-height) * .5);
+	border-radius: var(--base-border-radius);
+	background: var(--button-bg);
+	color: var(--button-color);
+	border: var(--button-border-weight) solid var(--button-border-color);
+	transition: background var(--md-speed) ease-in-out,
+              filter var(--md-speed) ease-in-out,
+							color var(--md-speed) ease-in-out,
+							border var(--md-speed) ease-in-out,
+							box-shadow var(--md-speed) ease-in-out,
+							transform var(--md-speed) ease-in-out,
+							opacity var(--md-speed) ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+button:hover,
+.button:hover {
+  --button-bg: var(--main-color);
+	--button-color: var(--bg-color);
+	--button-border-weight: 1px;
+	--button-border-color: var(--main-color);
+  filter: brightness(85%);
 }

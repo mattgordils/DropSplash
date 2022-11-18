@@ -34,51 +34,65 @@ const Content = styled(ContentEditable)`
 
 const BlockHeadline = ({ className, position, tag = 'p', html, id, removeBlock, updateBlock, placeholder }) => {
   const contentEditable = useRef()
-  const [state, setState] = useState({})
+  const [blockHtml, setBlockHtml] = useState('')
+  const [isTyping, setIsTyping] = useState({})
+  const [focused, setFocused] = useState({})
 
   const handleChange = event => {
-    setState({ ...state, html: event.target.value });
+    setBlockHtml(event.target.value);
   }
 
   // Show a placeholder for blank pages
   const addPlaceholder = content => {
-    if (state.html === placeholder || state.html == '' || !html) {
-      return true;
+    if (blockHtml === placeholder || blockHtml == '' || !html) {
+      return true
     } else {
-      return false;
+      return false
     }
   }
 
   const handleBlur = event => {
     // Show placeholder if block is still the only one and empty
-    const hasPlaceholder = addPlaceholder(state.html)
-    if (!hasPlaceholder) {
-      setState({ ...state, isTyping: false });
+    const hasPlaceholder = addPlaceholder(blockHtml)
+    if (blockHtml) {
+      setFocused(false)
+    } else {
+      setFocused(true)
     }
+    if (!hasPlaceholder) {
+      setIsTyping(false)
+    }
+  }
+
+  const handleFocus = event => {
+    // Show placeholder if block is still the only one and empty
+    setFocused(true)
+    console.log(event)
   }
 
   useEffect(() => {
     addPlaceholder()
     contentEditable.current.focus()
+    handleFocus(true)
   }, [])
 
-  const hasContent = state.html !== '' && state.html !== undefined
+  const hasContent = blockHtml !== '' && blockHtml !== undefined
 
-  console.log(state.html)
+  console.log(blockHtml)
 
   return (
     <Wrapper className={className} hasContent={hasContent}>
-      <BlockWrapper removeBlock={() => removeBlock(id)}>
+      <BlockWrapper removeBlock={() => removeBlock(id)} focused={focused}>
         <Content
           innerRef={contentEditable}
           data-position={position}
           data-tag={tag}
-          html={state.html}
+          html={blockHtml}
           spellCheck={false}
           onChange={handleChange}
           hasContent={hasContent}
-          // onFocus={handleFocus}
-          // onBlur={handleBlur}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           // onKeyDown={handleKeyDown}
           // onKeyUp={handleKeyUp}
           // onMouseUp={handleMouseUp}
