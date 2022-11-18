@@ -1,14 +1,20 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
+const buttonSizes = {
+  small: '30px'
+}
+
 const Wrapper = styled.div`
+  ${ ({ size }) => size !== 'medium' && size !== 'default' ? `
+    --button-height: ${ buttonSizes[size] };
+  ` : `` }
   --button-bg: var(--main-color);
 	--button-color: var(--bg-color);
 	--button-border-weight: 1px;
 	--button-border-color: var(--main-color);
 	appearance: none;
 	cursor: pointer;
-	min-width: 200px;
 	height: var(--button-height);
 	font-family: var(--main-font);
 	font-weight: var(--medium);
@@ -18,8 +24,6 @@ const Wrapper = styled.div`
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0 calc(var(--button-height) * .5);
-	border-radius: 100px;
 	background: var(--button-bg);
 	color: var(--button-color);
 	border: var(--button-border-weight) solid var(--button-border-color);
@@ -31,17 +35,37 @@ const Wrapper = styled.div`
 							transform var(--md-speed) ease-in-out,
 							opacity var(--md-speed) ease-in-out;
   &:hover {
-    --button-bg: var(--main-color);
+    --button-bg: var(--main-color-darken);
     --button-color: var(--bg-color);
     --button-border-weight: 1px;
     --button-border-color: var(--main-color);
-    filter: brightness(85%);
   }
+  ${ ({ shape }) => shape === 'circle' || shape === 'square' ? `
+    padding: 0;
+    min-width: var(--button-height);
+    width: var(--button-height);
+  ` : `
+    padding: 0 calc(var(--button-height) * .5);
+    min-width: 200px;
+  ` }
+  ${ ({ shape }) => shape === 'circle' ? `
+    border-radius: 50%;
+  ` : `
+    border-radius: 100px;
+  ` }
 `
 
-const Button = ({ className, children, onClick }) => (
-  <Wrapper className={className} as={'button'} onClick={onClick}>
-    {children}
+const Button = ({
+  className,
+  children,
+  onClick,
+  shape,
+  size,
+  icon,
+  iconPosition
+}) => (
+  <Wrapper className={className} as={'button'} onClick={onClick} shape={shape} size={size}>
+    {iconPosition !== 'right' && icon}{children}{iconPosition === 'right' && icon}
   </Wrapper>
 )
 

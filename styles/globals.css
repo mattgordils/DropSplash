@@ -11,6 +11,7 @@ html {
   --black: #222;
   --white: #ffffff;
   --main-color: #0FC5A3;
+  --main-color-darken: #08AF86;
   --alert: red;
   --notify: yellow;
   --success: green;
@@ -81,9 +82,8 @@ button,
 
 button:hover,
 .button:hover {
-  --button-bg: var(--main-color);
+  --button-bg: var(--main-color-darken);
 	--button-color: var(--bg-color);
 	--button-border-weight: 1px;
 	--button-border-color: var(--main-color);
-  filter: brightness(85%);
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import BlockEditable from 'components/BlockEditable'
 import BlockImage from 'components/BlockImage'
+import AddContentActions from 'components/AddContentActions'
 import { resetServerContext, DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 const Wrapper = styled.div`
@@ -77,14 +78,6 @@ const PageBuilder = ({ className }) => {
     // updateBlocks(updatedBlocks)
   }
 
-  const ContentAddActions = () => (
-    <div className='pt-8'>
-      <button onClick={() => addContent('headline')}>+ Add Headline</button>
-      <button onClick={() => addContent('text')}>+ Add Text</button>
-      <button onClick={() => addContent('image')}>+ Add Image</button>
-    </div>
-  )
-
   const handleOnDragEnd = result => {
     if (!result.destination) return
     const items = Array.from(blocks)
@@ -159,13 +152,13 @@ const PageBuilder = ({ className }) => {
                   )}
                 </Droppable>
               </DragDropContext>
-              <ContentAddActions/>
+              <AddContentActions addContent={addContent}/>
             </div>
           ) : (
             <div>
               <h1>Add Content</h1>
               <p>Add text, image, or video.</p>
-              <ContentAddActions/>
+              <AddContentActions addContent={addContent}/>
             </div>
           )}
       </div>

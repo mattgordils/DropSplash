@@ -65,7 +65,7 @@ const HoverActions = styled.div`
   display: flex;
   padding-left: 10px;
   align-items: center;
-  justify-conent: center;
+  justify-conent: flex-start;
   // visibility: hidden;
   transition: opacity 300ms ease-in-out,
               visibility 300ms ease-in-out;
@@ -125,7 +125,7 @@ const BlockWrapper = ({ className, children, removeBlock, focused, dragProps, is
     {children}
     <HoverActions className='hover-actions'>
       <DragHandle {...dragProps}><DragIcon/></DragHandle>
-      {/* <DeleteButton onClick={removeBlock}><MdDelete size='24px'/></DeleteButton> */}
+      <DeleteButton onClick={removeBlock}><MdDelete size='20px'/></DeleteButton>
     </HoverActions>
   </Wrapper>
 )
