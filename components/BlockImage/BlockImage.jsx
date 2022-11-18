@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   }
 `
 
-const BlockImage = ({ className, removeBlock, id }) => {
+const BlockImage = ({ className, removeBlock, id, dragProps }) => {
   const [srcInput, setSrcInput] = useState()
   const [src, setSrc] = useState()
 
@@ -32,7 +32,7 @@ const BlockImage = ({ className, removeBlock, id }) => {
   // https://images.unsplash.com/photo-1665686374221-1901faa9f3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80
 
   return (
-    <BlockWrapper removeBlock={() => removeBlock(id)}>
+    <BlockWrapper removeBlock={() => removeBlock(id)} dragProps={dragProps}>
       <Wrapper className={className}>
         {src ? (
           <>

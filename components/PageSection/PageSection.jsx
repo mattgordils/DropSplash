@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import BlockEditable from 'components/BlockEditable'
 import BlockImage from 'components/BlockImage'
+import { resetServerContext, DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 const Wrapper = styled.div`
   height: 100%;
@@ -45,15 +46,16 @@ const componentMap = {
 const PageBuilder = ({ className }) => {
   const [blocks, updateBlocks] = useState([])
 
-  const addContent = type => {
+  const addContent = (type, placeholder, id, html) => {
     const newBlock = {
-      id: Date.now(),
+      id: id || JSON.stringify(Date.now()),
       type: type,
-      html: '',
-      placeholder: componentMap[type].placeholder,
+      html: html || '',
+      placeholder: placeholder || componentMap[type].placeholder,
       tag: componentMap[type].tag
     }
     updateBlocks(blocks.concat(newBlock))
+    return
   }
 
   const removeBlock = id => {
@@ -76,44 +78,96 @@ const PageBuilder = ({ className }) => {
   }
 
   const ContentAddActions = () => (
-    <div>
+    <div className='pt-8'>
       <button onClick={() => addContent('headline')}>+ Add Headline</button>
       <button onClick={() => addContent('text')}>+ Add Text</button>
       <button onClick={() => addContent('image')}>+ Add Image</button>
     </div>
   )
 
+  const handleOnDragEnd = result => {
+    if (!result.destination) return
+    const items = Array.from(blocks)
+    const [reorderedItem] = items.splice(result.source.index, 1)
+    items.splice(result.destination.index, 0, reorderedItem)
+    updateBlocks(items)
+  }
+
+  useEffect(() => {
+    const starterHeadline = {
+      id: 'starterHeadline',
+      type: 'headline',
+      html: '',
+      placeholder: 'My First Splash Page',
+      tag: 'h1'
+    }
+    const starterText = {
+      id: 'starterText',
+      type: 'text',
+      html: '',
+      placeholder: 'Add text, image, or video.',
+      tag: 'p'
+    }
+    updateBlocks([starterHeadline, starterText])
+  }, [])
+
   return (
     <>
     <Wrapper className={className}>
       <div>
-        {blocks.length > 0 ? (
-          <div>
-            {blocks.map(item => {
-              const Component = componentMap[item.type].component
-              return (
-                <div key={item.id}>
-                  <Component
-                    {...item}
-                    id={item.id}
-                    tag={item.tag}
-                    placeholder={item.placeholder}
-                    html={item.content}
-                    updateBlock={updateBlock}
-                    removeBlock={removeBlock}
-                  />
-                </div>
-              )
-            })}
-            <ContentAddActions/>
-          </div>
-        ) : (
-          <div>
-            <h1>Get Started</h1>
-            <p>Add your first pieces of content and create your first splash page.</p>
-            <ContentAddActions/>
-          </div>
-        )}
+          {blocks.length > 0 ? (
+            <div>
+              <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId={'sectionContent'}>
+                  {(provided) => (
+                    <ul {...provided.droppableProps} ref={provided.innerRef}>
+                      {blocks.map((item, index) => {
+                        const Component = componentMap[item.type].component
+                        return (
+                          <Draggable key={item.id} draggableId={item.id} index={index}>
+                            {(provided, snapshot) => {
+                              const splitDragStyle = provided.draggableProps?.style?.transform?.split(', ')
+                              if (splitDragStyle) {
+                                provided.draggableProps.style.transform = 'translate(0px, ' + splitDragStyle[1]
+                              }
+                              console.log(snapshot.isDragging)
+                              return (
+                                <li
+                                  {...provided.draggableProps}
+                                  ref={provided.innerRef}
+                                  style={provided.draggableProps.style}
+                                >
+                                  <Component
+                                    {...item}
+                                    id={item.id}
+                                    tag={item.tag}
+                                    placeholder={item.placeholder}
+                                    html={item.content}
+                                    updateBlock={updateBlock}
+                                    removeBlock={removeBlock}
+                                    dragProps={provided.dragHandleProps}
+                                    isDragging={snapshot.isDragging}
+                                  />
+                                </li>
+                              )
+                            }}
+                          </Draggable>
+                        )
+                      })}
+                      {provided.placeholder}
+                    </ul>
+                  )}
+                </Droppable>
+              </DragDropContext>
+              <ContentAddActions/>
+            </div>
+          ) : (
+            <div>
+              <h1>Add Content</h1>
+              <p>Add text, image, or video.</p>
+              <ContentAddActions/>
+            </div>
+          )}
       </div>
     </Wrapper>
 
@@ -130,7 +184,7 @@ const PageBuilder = ({ className }) => {
       {blocks.map(item => {
         const Component = componentMap[item.type].component
         return (
-          <div key={item.id}>
+          <div key={item.id + 'html'}>
             {`<section class='something'></section>`}
           </div>
         )

@@ -4,7 +4,7 @@ import PageSection from 'components/PageSection'
 import Button from 'components/Button'
 
 const Home = () => {
-  const [sections, updateSections] = useState([{}])
+  const [sections, updateSections] = useState([{ id: 'sectionId' }])
   return (
     <div>
       <Head>
@@ -14,8 +14,8 @@ const Home = () => {
       </Head>
       <div className='top-0 left 0 h-screen w-full fixed flex flex-col'>
         <div className="grow">
-          {sections.map(() => (
-            <PageSection deletable={sections.length > 1} />
+          {sections.map(item => (
+            <PageSection key={item.id} deletable={sections.length > 1} />
           ))}
         </div>
         <div className="bg-black shrink-0 grow-0 flex justify-center">

@@ -6,7 +6,7 @@ import ContentEditable from 'react-contenteditable'
 const CMD_KEY = '/'
 
 const Wrapper = styled.div`
-  margin: 0 0 10px;
+  padding: 10px 0;
 `
 
 const Placeholder = styled.div`
@@ -32,11 +32,22 @@ const Content = styled(ContentEditable)`
   ` }
 `
 
-const BlockHeadline = ({ className, position, tag = 'p', html, id, removeBlock, updateBlock, placeholder }) => {
+const BlockHeadline = ({
+  className,
+  position,
+  tag = 'p',
+  html,
+  id,
+  removeBlock,
+  updateBlock,
+  placeholder,
+  dragProps,
+  isDragging
+}) => {
   const contentEditable = useRef()
   const [blockHtml, setBlockHtml] = useState('')
   const [isTyping, setIsTyping] = useState({})
-  const [focused, setFocused] = useState({})
+  const [focused, setFocused] = useState()
 
   const handleChange = event => {
     setBlockHtml(event.target.value);
@@ -54,11 +65,7 @@ const BlockHeadline = ({ className, position, tag = 'p', html, id, removeBlock, 
   const handleBlur = event => {
     // Show placeholder if block is still the only one and empty
     const hasPlaceholder = addPlaceholder(blockHtml)
-    if (blockHtml) {
-      setFocused(false)
-    } else {
-      setFocused(true)
-    }
+    setFocused(false)
     if (!hasPlaceholder) {
       setIsTyping(false)
     }
@@ -67,7 +74,6 @@ const BlockHeadline = ({ className, position, tag = 'p', html, id, removeBlock, 
   const handleFocus = event => {
     // Show placeholder if block is still the only one and empty
     setFocused(true)
-    console.log(event)
   }
 
   useEffect(() => {
@@ -78,11 +84,14 @@ const BlockHeadline = ({ className, position, tag = 'p', html, id, removeBlock, 
 
   const hasContent = blockHtml !== '' && blockHtml !== undefined
 
-  console.log(blockHtml)
-
   return (
     <Wrapper className={className} hasContent={hasContent}>
-      <BlockWrapper removeBlock={() => removeBlock(id)} focused={focused}>
+      <BlockWrapper
+        removeBlock={() => removeBlock(id)}
+        focused={focused}
+        dragProps={dragProps}
+        isDragging={isDragging}
+      >
         <Content
           innerRef={contentEditable}
           data-position={position}
