@@ -9,7 +9,7 @@ h1, .h1, .h1 p {
 	font-size: clamp(42px, calc(60vw / 1440 * 100), 60px);
 	line-height: 1.1em;
 	letter-spacing: -.04em;
-	font-weight: normal;
+	font-weight: var(--medium);
 	font-style: normal;
 	text-transform: none;
 }
@@ -19,7 +19,7 @@ h2, .h2, .h2 p {
 	font-size: clamp(32px, calc(42vw / 1440 * 100), 42px);
 	line-height: 1.2em;
 	letter-spacing: -.02em;
-	font-weight: normal;
+	font-weight: var(--medium);
 	font-style: normal;
 	text-transform: none;
 }
@@ -30,7 +30,7 @@ h3, .h3, .h3 p {
 	font-size: clamp(24px, calc(32vw / 1440 * 100), 32px);
 	line-height: 1.2em;
 	letter-spacing: -.02em;
-	font-weight: normal;
+	font-weight: var(--medium);
 	font-style: normal;
 	text-transform: none;
 }
@@ -40,7 +40,7 @@ h4, .h4, .h4 p {
 	font-size: clamp(20px, calc(24vw / 1440 * 100), 24px);
 	line-height: 1.2em;
 	letter-spacing: -.02em;
-	font-weight: normal;
+	font-weight: var(--medium);
 	font-style: normal;
 	text-transform: none;
 }
@@ -50,17 +50,17 @@ h5, .h5, .h5 p {
 	font-size: 20px;
 	line-height: 1.2em;
 	letter-spacing: -.02em;
-	font-weight: normal;
+	font-weight: var(--medium);
 	font-style: normal;
 	text-transform: none;
 }
 
 h6, .h6, .h6 p, .caption, figcaption, .eyebrow {
-	font-family: var(--mono-font);
-	font-size: 11px;
+	font-family: var(--primary-font);
+	font-size: 12px;
 	line-height: 1.2em;
-	letter-spacing: .06em;
-	font-weight: normal;
+	letter-spacing: .1em;
+	font-weight: var(--bold);
 	font-style: normal;
 	text-transform: uppercase;
 }
@@ -108,7 +108,7 @@ ol.tiny, .body-tiny, .body-tiny ol {
 }
 
 .mono, .mono > p {
-	font-family: var(--mono-font);
+	font-family: var(--primary-font);
 }
 
 strong, b, .bold {
@@ -224,7 +224,7 @@ select {
 
 .rich-text ol li:before {
 	content: counter(my-awesome-counter);
-	font-family: var(--mono-font);
+	font-family: var(--primary-font);
 	display: block;
 	width: 6px;
 	height: 6px;

@@ -3,13 +3,8 @@ import styled from '@emotion/styled'
 import BlockWrapper from 'components/BlockWrapper'
 
 const Wrapper = styled.div`
-  max-width: 800px;
   width: 100%;
-  border-radius: 10px;
-  background: #eee;
-  input {
-    margin: 20px;
-  }
+  padding: 10px 0;
   img {
     width: 100%;
     height: auto;
@@ -17,9 +12,21 @@ const Wrapper = styled.div`
   }
 `
 
+const EmptyWrapper = styled.div`
+  border-radius: 10px;
+  background: #eee;
+  input {
+    margin: 20px;
+  }
+`
+const ImageWrapper = styled.div`
+`
+
 const BlockImage = ({ className, removeBlock, id, dragProps }) => {
   const [srcInput, setSrcInput] = useState()
-  const [src, setSrc] = useState()
+  const [width, setWidth] = useState(800)
+  const [height, setHeight] = useState()
+  const [src, setSrc] = useState('https://images.unsplash.com/photo-1665686374221-1901faa9f3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')
 
   const handleChange = event => {
     setSrcInput(event.target.value);
@@ -32,20 +39,26 @@ const BlockImage = ({ className, removeBlock, id, dragProps }) => {
   // https://images.unsplash.com/photo-1665686374221-1901faa9f3ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80
 
   return (
-    <BlockWrapper removeBlock={() => removeBlock(id)} dragProps={dragProps}>
-      <Wrapper className={className}>
+    <Wrapper className={className}>
+      <BlockWrapper
+        removeBlock={() => removeBlock(id)}
+        dragProps={dragProps}
+        adjustSize={true}
+        setWidth={setWidth}
+        maxWidth={width || 800}
+      >
         {src ? (
-          <>
+          <ImageWrapper>
             <img src={src} value={srcInput} />
-          </>
+          </ImageWrapper>
         ) : (
-          <>
+          <EmptyWrapper>
             <input type="text" onChange={handleChange} />
             <button onClick={submitSrc} >OK</button>
-          </>
+          </EmptyWrapper>
         )}
-      </Wrapper>
-    </BlockWrapper>
+      </BlockWrapper>
+    </Wrapper>
   )
 }
 

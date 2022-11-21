@@ -2,26 +2,28 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 const buttonSizes = {
-  small: '30px'
+  small: '30px',
+  tiny: '26px'
 }
 
 const Wrapper = styled.div`
-  ${ ({ size }) => size !== 'medium' && size !== 'default' ? `
+  ${ ({ size }) => size && size !== 'medium' && size !== 'default' ? `
     --button-height: ${ buttonSizes[size] };
   ` : `` }
   --button-bg: var(--main-color);
 	--button-color: var(--bg-color);
 	--button-border-weight: 1px;
-	--button-border-color: var(--main-color);
+	--button-border-color: var(--button-bg);
 	appearance: none;
 	cursor: pointer;
 	height: var(--button-height);
 	font-family: var(--main-font);
-	font-weight: var(--medium);
+	font-weight: var(--bold);
 	font-size: 14px;
 	letter-spacing: 0.05em;
 	line-height: 1em;
 	display: inline-flex;
+  vertical-align: top;
 	align-items: center;
 	justify-content: center;
 	background: var(--button-bg);
@@ -38,15 +40,23 @@ const Wrapper = styled.div`
     --button-bg: var(--main-color-darken);
     --button-color: var(--bg-color);
     --button-border-weight: 1px;
-    --button-border-color: var(--main-color);
+    --button-border-color: var(--button-bg);
   }
-  ${ ({ shape }) => shape === 'circle' || shape === 'square' ? `
+  ${ ({ shape, iconPosition, icon }) => shape === 'circle' || shape === 'square' ? `
     padding: 0;
     min-width: var(--button-height);
     width: var(--button-height);
   ` : `
     padding: 0 calc(var(--button-height) * .5);
-    min-width: 200px;
+    ${ iconPosition === 'right' ? `
+      > svg {
+        margin-left: .5em;
+      }
+    ` : `
+      > svg {
+        margin-right: .5em;
+      }
+    ` }
   ` }
   ${ ({ shape }) => shape === 'circle' ? `
     border-radius: 50%;
@@ -62,9 +72,10 @@ const Button = ({
   shape,
   size,
   icon,
-  iconPosition
+  iconPosition,
+  ...rest
 }) => (
-  <Wrapper className={className} as={'button'} onClick={onClick} shape={shape} size={size}>
+  <Wrapper {...rest} iconPosition={iconPosition} className={className} as={'button'} onClick={onClick} shape={shape} size={size}>
     {iconPosition !== 'right' && icon}{children}{iconPosition === 'right' && icon}
   </Wrapper>
 )

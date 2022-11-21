@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import '../styles/fonts.css'
 import '../styles/typography.css'
+import '../styles/font-options.css'
 import { SessionProvider } from "next-auth/react"
 
 function MyApp({

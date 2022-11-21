@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import BlockEditable from 'components/BlockEditable'
 import BlockImage from 'components/BlockImage'
-import AddContentActions from 'components/AddContentActions'
+import AddContentActions, { ContentMenu } from 'components/AddContentActions'
 import { resetServerContext, DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 const Wrapper = styled.div`
@@ -47,7 +47,7 @@ const componentMap = {
 const PageBuilder = ({ className }) => {
   const [blocks, updateBlocks] = useState([])
 
-  const addContent = (type, placeholder, id, html) => {
+  const addContent = (type, placeholder, id, html, index) => {
     const newBlock = {
       id: id || JSON.stringify(Date.now()),
       type: type,
@@ -55,7 +55,24 @@ const PageBuilder = ({ className }) => {
       placeholder: placeholder || componentMap[type].placeholder,
       tag: componentMap[type].tag
     }
-    updateBlocks(blocks.concat(newBlock))
+    if (index === 0) {
+      console.log('first item')
+      const blockArray = []
+      blockArray.push(newBlock)
+      console.log(blockArray)
+      updateBlocks(blockArray.concat(blocks))
+    } else if (index) {
+      blocks.splice(index, 0, newBlock)
+      // Add with concat method without mutating original array
+      let newArray = [].concat(blocks)
+
+      console.log(newArray)
+      updateBlocks(newArray)
+
+    } else {
+      console.log('not 0')
+      updateBlocks(blocks.concat(newBlock))
+    }
     return
   }
 
@@ -66,16 +83,16 @@ const PageBuilder = ({ className }) => {
     updateBlocks(updatedBlocks)
   }
 
-  const updateBlock = (id, object) => {
+  const updateBlock = (key = 'html', html, id) => {
     const indexOfBlock = blocks.findIndex(block => {
       return block.id === id;
     })
 
-    blocks[indexOfBlock] = object
+    const items = Array.from(blocks)
+    items[indexOfBlock][key] = html
 
-    console.log(object)
-
-    // updateBlocks(updatedBlocks)
+    console.log(items)
+    updateBlocks(items)
   }
 
   const handleOnDragEnd = result => {
@@ -101,13 +118,15 @@ const PageBuilder = ({ className }) => {
       placeholder: 'Add text, image, or video.',
       tag: 'p'
     }
-    updateBlocks([starterHeadline, starterText])
+    // updateBlocks([starterHeadline, starterText])
   }, [])
+
+  console.log(blocks)
 
   return (
     <>
     <Wrapper className={className}>
-      <div>
+      <div style={{ margin: 'auto' }}>
           {blocks.length > 0 ? (
             <div>
               <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -123,19 +142,21 @@ const PageBuilder = ({ className }) => {
                               if (splitDragStyle) {
                                 provided.draggableProps.style.transform = 'translate(0px, ' + splitDragStyle[1]
                               }
-                              console.log(snapshot.isDragging)
                               return (
                                 <li
                                   {...provided.draggableProps}
                                   ref={provided.innerRef}
                                   style={provided.draggableProps.style}
                                 >
+                                  <AddContentActions addContent={addContent} position={index} addBetween/>
                                   <Component
                                     {...item}
                                     id={item.id}
                                     tag={item.tag}
+                                    type={item.type}
                                     placeholder={item.placeholder}
                                     html={item.content}
+                                    settings={item?.settings}
                                     updateBlock={updateBlock}
                                     removeBlock={removeBlock}
                                     dragProps={provided.dragHandleProps}
@@ -152,13 +173,15 @@ const PageBuilder = ({ className }) => {
                   )}
                 </Droppable>
               </DragDropContext>
-              <AddContentActions addContent={addContent}/>
+              <AddContentActions addContent={addContent} addBetween/>
             </div>
           ) : (
             <div>
-              <h1>Add Content</h1>
-              <p>Add text, image, or video.</p>
-              <AddContentActions addContent={addContent}/>
+              <h2 className='mb-2'>Add Content</h2>
+              <p className='small text-light-text-color mb-8'>Add text, image, or video.</p>
+              <div className="text-center">
+                <ContentMenu addContent={addContent} visible />
+              </div>
             </div>
           )}
       </div>
@@ -176,9 +199,17 @@ const PageBuilder = ({ className }) => {
       `}
       {blocks.map(item => {
         const Component = componentMap[item.type].component
+        console.log(item)
+        if (item.type == 'image') {
+          return (
+            <div key={item.id + 'html'}>
+              {`<div class='` + item.type + `'><img src='' /></div>`}
+            </div>
+          )
+        }
         return (
           <div key={item.id + 'html'}>
-            {`<section class='something'></section>`}
+            {`<div class='` + item.type + `'><`+ item.tag +`>` + item.html + `</` + item.tag + `></div>`}
           </div>
         )
       })}

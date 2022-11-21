@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import BlockWrapper from 'components/BlockWrapper'
 import ContentEditable from 'react-contenteditable'
 
@@ -36,21 +37,25 @@ const BlockHeadline = ({
   className,
   position,
   tag = 'p',
-  html,
+  html = '',
   id,
   removeBlock,
   updateBlock,
   placeholder,
   dragProps,
-  isDragging
+  isDragging,
+  type,
+  settings
 }) => {
   const contentEditable = useRef()
   const [blockHtml, setBlockHtml] = useState('')
   const [isTyping, setIsTyping] = useState({})
   const [focused, setFocused] = useState()
+  const [editorStyles, setEditorStyles] = useState()
 
   const handleChange = event => {
     setBlockHtml(event.target.value);
+    updateBlock('html', event.target.value, id)
   }
 
   // Show a placeholder for blank pages
@@ -91,6 +96,9 @@ const BlockHeadline = ({
         focused={focused}
         dragProps={dragProps}
         isDragging={isDragging}
+        type={type}
+        updateBlock={updateBlock}
+        blockId={id}
       >
         <Content
           innerRef={contentEditable}
@@ -106,9 +114,13 @@ const BlockHeadline = ({
           // onKeyUp={handleKeyUp}
           // onMouseUp={handleMouseUp}
           tagName={tag}
+          style={{ fontFamily: settings?.fontFamily }}
         />
         {placeholder && !hasContent && (
-          <Placeholder as={tag}>{placeholder}</Placeholder>
+          <Placeholder
+            as={tag}
+            style={{ fontFamily: settings?.fontFamily }}
+          >{placeholder}</Placeholder>
         )}
       </BlockWrapper>
     </Wrapper>

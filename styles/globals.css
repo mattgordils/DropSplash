@@ -6,6 +6,12 @@ html {
   font-family: 'UI Font';
 }
 
+html, input, button, select {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 :root {
   /* Colors */
   --black: #222;
@@ -21,7 +27,7 @@ html {
     --text-color-rgb: 51, 51, 51;
   --light-text-color: #818181;
   --light-grey: #eee;
-  --hr-color: rgba(var(--text-color-rgb, .07));
+  --hr-color: rgba(var(--text-color-rgb), .1);
   /* Spacing */
   --site-gutters: 16px;
   --site-margins: clamp(16px, 4vw, 100px);
@@ -46,44 +52,4 @@ html {
   --md-speed: .3s;
   --slow-speed: .5s;
   --fast-speed: .15s;
-}
-
-button,
-.button {
-  --button-bg: var(--main-color);
-	--button-color: var(--bg-color);
-	--button-border-weight: 1px;
-	--button-border-color: var(--main-color);
-	appearance: none;
-	cursor: pointer;
-	min-width: 200px;
-	height: var(--button-height);
-	font-family: var(--main-font);
-	font-weight: var(--medium);
-	font-size: 14px;
-	letter-spacing: 0.05em;
-	line-height: 1em;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	padding: 0 calc(var(--button-height) * .5);
-	border-radius: var(--base-border-radius);
-	background: var(--button-bg);
-	color: var(--button-color);
-	border: var(--button-border-weight) solid var(--button-border-color);
-	transition: background var(--md-speed) ease-in-out,
-              filter var(--md-speed) ease-in-out,
-							color var(--md-speed) ease-in-out,
-							border var(--md-speed) ease-in-out,
-							box-shadow var(--md-speed) ease-in-out,
-							transform var(--md-speed) ease-in-out,
-							opacity var(--md-speed) ease-in-out;
-}
-
-button:hover,
-.button:hover {
-  --button-bg: var(--main-color-darken);
-	--button-color: var(--bg-color);
-	--button-border-weight: 1px;
-	--button-border-color: var(--main-color);
 }
