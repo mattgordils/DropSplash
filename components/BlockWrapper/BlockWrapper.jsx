@@ -5,7 +5,8 @@ import DragIcon from 'assets/drag-icon.svg'
 import Button from 'components/Button'
 import { MdDelete, MdClose } from 'react-icons/md'
 import { Resizable } from 're-resizable'
-import FontList from 'components/FontList'
+import SettingFontFamily from 'components/SettingFontFamily'
+import SettingFontSize from 'components/SettingFontSize'
 
 const Wrapper = styled.div`
   position: relative;
@@ -195,7 +196,7 @@ const BlockWrapper = ({
   type,
   blockId,
   updateBlock,
-  css
+  settings
 }) => {
   const blockContent = useRef()
   const [resizing, setResizing] = useState(false)
@@ -207,8 +208,13 @@ const BlockWrapper = ({
     setSettingsOpen(!settingsOpen)
   }
 
-  const setFont = fontStack => {
+  const setFontFamily = fontStack => {
     updateBlock('settings', { fontFamily: fontStack }, blockId)
+  }
+
+  const setFontSize = event => {
+    console.log(event)
+    updateBlock('settings', { fontSize: event }, blockId)
   }
 
   return (
@@ -240,7 +246,8 @@ const BlockWrapper = ({
               />
             </div>
             <div>
-              <FontList setFont={setFont}/>
+              <SettingFontFamily setFontFamily={setFontFamily}/>
+              <SettingFontSize setFontSize={setFontSize}/>
             </div>
             <div className="border-t border-hr-color p-3">
               <Button icon={<MdDelete size='20px'/>} onClick={removeBlock}>Delete</Button>

@@ -99,6 +99,7 @@ const BlockHeadline = ({
         type={type}
         updateBlock={updateBlock}
         blockId={id}
+        settings={settings}
       >
         <Content
           innerRef={contentEditable}
@@ -114,12 +115,20 @@ const BlockHeadline = ({
           // onKeyUp={handleKeyUp}
           // onMouseUp={handleMouseUp}
           tagName={tag}
-          style={{ fontFamily: settings?.fontFamily }}
+          style={{
+            fontFamily: settings?.fontFamily || null,
+            fontWeight: settings?.fontFamily ? 400 : null,
+            fontSize: settings?.fontSize ? settings?.fontSize + 'px' : null
+          }}
         />
         {placeholder && !hasContent && (
           <Placeholder
             as={tag}
-            style={{ fontFamily: settings?.fontFamily }}
+            style={{
+              fontFamily: settings?.fontFamily || null,
+              fontWeight: settings?.fontFamily ? 400 : null,
+              fontSize: settings?.fontSize ? settings?.fontSize + 'px' : null
+            }}
           >{placeholder}</Placeholder>
         )}
       </BlockWrapper>

@@ -55,12 +55,12 @@ const fontItems = [
   }
 ]
 
-const FontList = ({ className, setFont }) => (
+const SettingFontFamily = ({ className, setFontFamily }) => (
   <Wrapper className={className}>
     {fontItems.map((item, index) => {
       return (
         <FontItem>
-          <input onChange={() => setFont(item.fontStack)} className='hidden' type="radio" id={item.name} name="fonts" />
+          <input onChange={() => setFontFamily(item.fontStack)} className='hidden' type="radio" id={item.name} name="fonts" />
           <label style={{ fontFamily: item.fontStack }} htmlFor={item.name} className='px-3 py-2'>{item.name}</label>
         </FontItem>
       )
@@ -68,4 +68,4 @@ const FontList = ({ className, setFont }) => (
   </Wrapper>
 )
 
-export default FontList
+export default SettingFontFamily
