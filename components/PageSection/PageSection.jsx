@@ -53,7 +53,8 @@ const PageBuilder = ({ className }) => {
       type: type,
       html: html || '',
       placeholder: placeholder || componentMap[type].placeholder,
-      tag: componentMap[type].tag
+      tag: componentMap[type].tag,
+      settings: {}
     }
     if (index === 0) {
       console.log('first item')
@@ -83,13 +84,20 @@ const PageBuilder = ({ className }) => {
     updateBlocks(updatedBlocks)
   }
 
-  const updateBlock = (key = 'html', html, id) => {
+  const updateBlock = (key = 'html', value, id) => {
     const indexOfBlock = blocks.findIndex(block => {
       return block.id === id;
     })
 
     const items = Array.from(blocks)
-    items[indexOfBlock][key] = html
+    if (key.includes('settings')) {
+      const settingKey = key.split('.')[1]
+      if (settingKey) {
+        items[indexOfBlock].settings[settingKey] = value
+      }
+    } else {
+      items[indexOfBlock][key] = value
+    }
 
     console.log(items)
     updateBlocks(items)
@@ -109,14 +117,16 @@ const PageBuilder = ({ className }) => {
       type: 'headline',
       html: '',
       placeholder: 'My First Splash Page',
-      tag: 'h1'
+      tag: 'h1',
+      settings: {}
     }
     const starterText = {
       id: 'starterText',
       type: 'text',
       html: '',
       placeholder: 'Add text, image, or video.',
-      tag: 'p'
+      tag: 'p',
+      settings: {}
     }
     // updateBlocks([starterHeadline, starterText])
   }, [])

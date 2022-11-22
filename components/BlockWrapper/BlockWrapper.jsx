@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import styled from '@emotion/styled'
-import { css } from '@emotion/react'
+import { useFloating, offset, flip, shift, } from '@floating-ui/react-dom'
 import DragIcon from 'assets/drag-icon.svg'
 import Button from 'components/Button'
 import { MdDelete, MdClose } from 'react-icons/md'
@@ -73,7 +73,7 @@ const HoverActions = styled.div`
   left: 100%;
   top: 0;
   bottom: 0;
-  opacity: 0;
+  // opacity: 0;
   display: flex;
   padding-left: 10px;
   align-items: center;
@@ -180,7 +180,6 @@ const SettingsPanel = styled.div`
   box-shadow: 0 8px 16px rgba(0, 0, 0, .2);
   width: 200px;
   min-height: 60px;
-  left: 100%;
   top: 0;
 `
 
@@ -199,6 +198,12 @@ const BlockWrapper = ({
   settings
 }) => {
   const blockContent = useRef()
+  const {x, y, reference, floating, strategy} = useFloating({
+    placement: 'right',
+    strategy: 'fixed',
+    middleware: [offset(16)],
+  })
+  
   const [resizing, setResizing] = useState(false)
   const [selectedFont, setSelectedFont] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
@@ -209,16 +214,21 @@ const BlockWrapper = ({
   }
 
   const setFontFamily = fontStack => {
-    updateBlock('settings', { fontFamily: fontStack }, blockId)
+    updateBlock('settings.fontFamily', fontStack, blockId)
   }
 
   const setFontSize = event => {
     console.log(event)
-    updateBlock('settings', { fontSize: event }, blockId)
+    updateBlock('settings.fontSize', event, blockId)
   }
 
   return (
-    <Wrapper className={className} focused={focused || isDragging} showBorder={!setWidth}>
+    <Wrapper
+      className={className}
+      focused={focused || isDragging || settingsOpen}
+      showBorder={!setWidth}
+      ref={reference}
+    >
       {setWidth ? (
         <ResizableItem
           ref={blockContent}
@@ -235,7 +245,16 @@ const BlockWrapper = ({
       )}
       <HoverActions className='hover-actions'>
         {settingsOpen ? (
-          <SettingsPanel onMouseLeave={() => setSettingsOpen(false)}>
+          <SettingsPanel
+            // onMouseLeave={() => setSettingsOpen(false)}
+            ref={floating}
+            style={{
+              position: strategy,
+              top: y ?? 0,
+              left: x ?? 0,
+              width: 'max-content',
+            }}
+          >
             <div className="flex justify-between items-center gap-x-3 py-3 pl-3 border-b border-hr-color">
               <span class='h6'>{type} Settings</span>
               <Button
