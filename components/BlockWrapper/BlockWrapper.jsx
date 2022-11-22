@@ -7,6 +7,7 @@ import { MdDelete, MdClose } from 'react-icons/md'
 import { Resizable } from 're-resizable'
 import SettingFontFamily from 'components/SettingFontFamily'
 import SettingFontSize from 'components/SettingFontSize'
+import SettingOpacity from 'components/SettingOpacity'
 
 const Wrapper = styled.div`
   position: relative;
@@ -73,7 +74,7 @@ const HoverActions = styled.div`
   left: 100%;
   top: 0;
   bottom: 0;
-  // opacity: 0;
+  opacity: 0;
   display: flex;
   padding-left: 10px;
   align-items: center;
@@ -178,9 +179,10 @@ const SettingsPanel = styled.div`
   background: var(--bg-color);
   border-radius: var(--base-border-radius);
   box-shadow: 0 8px 16px rgba(0, 0, 0, .2);
-  width: 200px;
+  width: 250px !important;
   min-height: 60px;
   top: 0;
+  z-index: 10;
 `
 
 const BlockWrapper = ({
@@ -217,69 +219,102 @@ const BlockWrapper = ({
     updateBlock('settings.fontFamily', fontStack, blockId)
   }
 
+  const setFontWeight = fontStack => {
+    updateBlock('settings.fontWeight', fontStack, blockId)
+  }
+
   const setFontSize = event => {
-    console.log(event)
     updateBlock('settings.fontSize', event, blockId)
   }
 
+  const setOpacity = event => {
+    updateBlock('settings.opacity', event, blockId)
+  }
+
   return (
-    <Wrapper
-      className={className}
-      focused={focused || isDragging || settingsOpen}
-      showBorder={!setWidth}
-      ref={reference}
-    >
-      {setWidth ? (
-        <ResizableItem
-          ref={blockContent}
-          lockAspectRatio
-          defaultSize={{ width: maxWidth }}
-          handleWrapperClass='resize-handles'
-        >
-          {children}
-        </ResizableItem>
-      ) : (
-        <div ref={blockContent}>
-          {children}
-        </div>
-      )}
-      <HoverActions className='hover-actions'>
-        {settingsOpen ? (
-          <SettingsPanel
-            // onMouseLeave={() => setSettingsOpen(false)}
-            ref={floating}
-            style={{
-              position: strategy,
-              top: y ?? 0,
-              left: x ?? 0,
-              width: 'max-content',
-            }}
+    <>
+      <Wrapper
+        className={className}
+        focused={focused || isDragging || settingsOpen}
+        showBorder={!setWidth}
+        ref={reference}
+      >
+        {setWidth ? (
+          <ResizableItem
+            ref={blockContent}
+            lockAspectRatio
+            defaultSize={{ width: maxWidth }}
+            handleWrapperClass='resize-handles'
           >
-            <div className="flex justify-between items-center gap-x-3 py-3 pl-3 border-b border-hr-color">
-              <span class='h6'>{type} Settings</span>
-              <Button
-                onClick={() => setSettingsOpen(false)}
-                icon={<MdClose size='18px' />}
-                size='tiny'
-                shape='circle'
-              />
-            </div>
-            <div>
-              <SettingFontFamily setFontFamily={setFontFamily}/>
-              <SettingFontSize setFontSize={setFontSize}/>
-            </div>
-            <div className="border-t border-hr-color p-3">
-              <Button icon={<MdDelete size='20px'/>} onClick={removeBlock}>Delete</Button>
-            </div>
-          </SettingsPanel>
+            {children}
+          </ResizableItem>
         ) : (
-          <>
-            <DragHandle {...dragProps} onClick={toggleSettingsPanel} icon={<DragIcon/>}></DragHandle>
-            <DeleteButton onClick={removeBlock} icon={<MdDelete size='20px'/>}/>
-          </>
+          <div ref={blockContent}>
+            {children}
+          </div>
         )}
-      </HoverActions>
-    </Wrapper>
+        <HoverActions className='hover-actions'>
+          {!settingsOpen && (
+            <>
+              <DragHandle {...dragProps} onClick={toggleSettingsPanel} icon={<DragIcon/>}></DragHandle>
+              <DeleteButton onClick={removeBlock} icon={<MdDelete size='20px'/>}/>
+            </>
+          )}
+        </HoverActions>
+      </Wrapper>
+
+      {settingsOpen && (
+        <SettingsPanel
+          // onMouseLeave={() => setSettingsOpen(false)}
+          ref={floating}
+          style={{
+            position: strategy,
+            top: y ?? 0,
+            left: x ?? 0,
+            width: 'max-content',
+          }}
+        >
+          <div className="flex justify-between items-center gap-x-3 py-3 pl-3 pr-2 border-b border-hr-color">
+            <span class='h6'>{type} Settings</span>
+            <Button
+              onClick={() => setSettingsOpen(false)}
+              icon={<MdClose size='18px' />}
+              size='tiny'
+              shape='circle'
+              setTheme='transparent'
+            />
+          </div>
+          <div>
+            {settings?.opacity && (
+              <div className="p-3">
+                <SettingOpacity
+                  setOpacity={setOpacity}
+                  settings={settings}
+                />
+              </div>
+            )}
+            {settings?.fontFamily && (
+              <SettingFontFamily
+                setFontFamily={setFontFamily}
+                setFontWeight={setFontWeight}
+                settings={settings}
+              />
+            )}
+            {settings?.fontSize && (
+              <div className="p-3">
+                <SettingFontSize
+                  setFontSize={setFontSize}
+                  settings={settings}
+                />
+              </div>
+            )}
+          </div>
+          <div className="border-t border-hr-color">
+            <Button setTheme='transparent' className='w-full hover:text-alert' icon={<MdDelete size='20px'/>} onClick={removeBlock}>Delete</Button>
+          </div>
+        </SettingsPanel>
+      )}
+    </>
   )
 }
 

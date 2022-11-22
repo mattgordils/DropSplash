@@ -29,18 +29,33 @@ const HtmlPreview = styled.div`
 const componentMap = {
   headline: {
     component: BlockEditable,
-    placeholder: 'Page title',
-    tag: 'h1'
+    placeholder: 'Enter headline',
+    tag: 'h1',
+    settings: {
+      fontSize: 50,
+      fontWeight: 600,
+      fontFamily: 'UI Font'
+    }
   },
   text: {
     component: BlockEditable,
     placeholder: 'Type something',
-    tag: 'p'
+    tag: 'p',
+    settings: {
+      fontSize: 16,
+      fontWeight: 400,
+      fontFamily: 'UI Font'
+    }
   },
   image: {
     component: BlockImage,
     placeholder: '',
-    tag: ''
+    tag: '',
+    settings: {
+      opacity: 100,
+      crop: 'auto',
+      borderRadius: 0
+    }
   }
 }
 
@@ -54,7 +69,7 @@ const PageBuilder = ({ className }) => {
       html: html || '',
       placeholder: placeholder || componentMap[type].placeholder,
       tag: componentMap[type].tag,
-      settings: {}
+      settings: {...componentMap[type].settings}
     }
     if (index === 0) {
       console.log('first item')
@@ -118,7 +133,9 @@ const PageBuilder = ({ className }) => {
       html: '',
       placeholder: 'My First Splash Page',
       tag: 'h1',
-      settings: {}
+      settings: {
+        fontSize: 50
+      }
     }
     const starterText = {
       id: 'starterText',
@@ -126,7 +143,9 @@ const PageBuilder = ({ className }) => {
       html: '',
       placeholder: 'Add text, image, or video.',
       tag: 'p',
-      settings: {}
+      settings: {
+        fontSize: 16
+      }
     }
     // updateBlocks([starterHeadline, starterText])
   }, [])

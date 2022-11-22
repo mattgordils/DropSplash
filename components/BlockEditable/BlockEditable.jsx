@@ -89,6 +89,8 @@ const BlockHeadline = ({
 
   const hasContent = blockHtml !== '' && blockHtml !== undefined
 
+  console.log(settings)
+
   return (
     <Wrapper className={className} hasContent={hasContent}>
       <BlockWrapper
@@ -117,7 +119,7 @@ const BlockHeadline = ({
           tagName={tag}
           style={{
             fontFamily: settings?.fontFamily || null,
-            fontWeight: settings?.fontFamily ? 400 : null,
+            fontWeight: settings?.fontWeight ? settings?.fontWeight : null,
             fontSize: settings?.fontSize ? settings?.fontSize + 'px' : null
           }}
         />
@@ -126,7 +128,7 @@ const BlockHeadline = ({
             as={tag}
             style={{
               fontFamily: settings?.fontFamily || null,
-              fontWeight: settings?.fontFamily ? 400 : null,
+              fontWeight: settings?.fontWeight ? settings?.fontWeight : null,
               fontSize: settings?.fontSize ? settings?.fontSize + 'px' : null
             }}
           >{placeholder}</Placeholder>

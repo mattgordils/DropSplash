@@ -37,7 +37,7 @@ html, input, button, select {
   /* Typography */
   --main-font: 'UI Font', sans-serif;
   --secondary-font: var(--main-font);
-  --mono-font: monospace;
+  --mono-font: 'UI Font Mono', monospace;
   --normal: normal;
   --light: 300;
   --medium: 600;

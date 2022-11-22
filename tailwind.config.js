@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['sans-serif'],
-      serif: ['serif'],
+      serif: ['serif']
     },
     colors: {
       'current': 'currentColor',
@@ -84,6 +84,9 @@ module.exports = {
         '4': '4',
         '5': '5',
         '6': '6'
+      },
+      leading: {
+        '1em': '1em'
       }
     },
   },

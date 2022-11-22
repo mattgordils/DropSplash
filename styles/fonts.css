@@ -25,6 +25,15 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'UI Font Mono';
+	src:  url('/fonts/roboto-mono/RobotoMono-Medium.woff') format('woff'),
+				url('/fonts/roboto-mono/RobotoMono-Medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
 /* @font-face {
 	font-family: 'UI Font';
 	src:  url('/fonts/inter/Inter-Regular.woff') format('woff'),

@@ -42,6 +42,18 @@ const Wrapper = styled.div`
     --button-border-weight: 1px;
     --button-border-color: var(--button-bg);
   }
+  ${ ({ setTheme }) => setTheme === 'transparent' ? `
+    --button-bg: transparent;
+    --button-color: var(--light-text-color);
+    --button-border-weight: 1px;
+    --button-border-color: transparent;
+    &:hover {
+      --button-bg: transparent;
+      --button-color: var(--text-color);
+      --button-border-weight: 1px;
+      --button-border-color: transparent;
+    }
+  ` : `` }
   ${ ({ shape, iconPosition, icon }) => shape === 'circle' || shape === 'square' ? `
     padding: 0;
     min-width: var(--button-height);
@@ -73,9 +85,10 @@ const Button = ({
   size,
   icon,
   iconPosition,
+  setTheme,
   ...rest
 }) => (
-  <Wrapper {...rest} iconPosition={iconPosition} className={className} as={'button'} onClick={onClick} shape={shape} size={size}>
+  <Wrapper {...rest} setTheme={setTheme} iconPosition={iconPosition} className={className} as={'button'} onClick={onClick} shape={shape} size={size}>
     {iconPosition !== 'right' && icon}{children}{iconPosition === 'right' && icon}
   </Wrapper>
 )

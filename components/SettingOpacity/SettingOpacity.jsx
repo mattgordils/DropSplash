@@ -16,8 +16,8 @@ const Wrapper = styled.div`
     height: 4px;
     background: var(--hr-color);
     border-radius: 5px;
-    background-image: linear-gradient(var(--main-color), var(--main-color));
-    background-size: ${ ({ value, min, max }) => mapPercentage(value, min, max) };
+    box-shadow: none !important;
+    background: linear-gradient(45deg, transparent, var(--main-color));
     background-repeat: no-repeat;
     transition: none !important;
 
@@ -94,33 +94,33 @@ const Wrapper = styled.div`
   }
 `
 
-const SettingFontSize = ({ className, setFontSize, settings }) => {
+const SettingOpacity = ({ className, setOpacity, settings }) => {
   const handleChange = event => {
     let target = event.target
-    setFontSize(target.value)
+    setOpacity(target.value)
   }
 
-  const min = 10
-  const max = 120
+  const min = 0
+  const max = 100
 
   return (
-    <Wrapper className={className} value={settings?.fontSize} min={min} max={max}>
+    <Wrapper className={className} value={settings?.opacity} min={min} max={max}>
       <div className="flex items-center justify-between mb-2">
-        <label for="settingFontSize" className='h6 leading-1em'>Font Size</label>
-        <div for="settingFontSize" className='tracking-normal text-[12px] normal-case font-medium text-light-text-color mono leading-1em'>{settings?.fontSize}px</div>
+        <label for="settingOpacity" className='h6 leading-1em'>Opacity</label>
+        <div for="settingOpacity" className='tracking-normal text-[12px] normal-case font-medium text-light-text-color mono leading-1em'>{settings?.opacity}</div>
       </div>
       <input
         onChange={handleChange}
         type="range"
-        id="settingFontSize"
-        name="settingFontSize" 
+        id="settingOpacity"
+        name="settingOpacity" 
         min={min}
         max={max}
-        value={settings?.fontSize}
+        value={settings?.opacity}
         step="1"
       />
     </Wrapper>
   )
 }
 
-export default SettingFontSize
+export default SettingOpacity
