@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { MdAdd, MdClose, MdNotes, MdTitle, MdImage } from 'react-icons/md'
+import Card from 'components/Card'
 import Button from 'components/Button'
 
 const Wrapper = styled.div`
@@ -43,10 +44,7 @@ const AddButton = styled(Button)`
   ` : `` }
 `
 
-const MenuPanel = styled.div`
-  background: var(--bg-color);
-  border-radius: var(--base-border-radius);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, .2);
+const MenuPanel = styled(Card)`
   ${ ({ visible }) => !visible ? `
     position: absolute;
     margin-left: -100px;

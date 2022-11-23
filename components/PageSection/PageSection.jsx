@@ -3,15 +3,28 @@ import styled from '@emotion/styled'
 import BlockEditable from 'components/BlockEditable'
 import BlockImage from 'components/BlockImage'
 import AddContentActions, { ContentMenu } from 'components/AddContentActions'
+import SectionSettings from 'components/SectionSettings'
 import { resetServerContext, DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+
+const textToFlex = {
+  top: 'flex-start',
+  left: 'flex-start',
+  bottom: 'flex-end',
+  right: 'flex-end',
+  center: 'center'
+}
 
 const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  align-items: ${ ({ vAlign }) => textToFlex[vAlign] };
+  justify-content: ${ ({ hAlign }) => textToFlex[hAlign] };
+  text-align: ${ ({ settings }) => settings.textAlignment || center };
+`
+
+const InnerWrapper = styled.div`
+  // margin-top: auto;
 `
 
 const HtmlPreview = styled.div`
@@ -59,8 +72,17 @@ const componentMap = {
   }
 }
 
-const PageBuilder = ({ className }) => {
+const initialSettings = {
+  textAlignment: 'center',
+  contentPlacement: 'center-center',
+  backgroundColor: '#fff',
+  backgroundImage: false,
+  backgroundVideo: false
+}
+
+const PageSection = ({ className }) => {
   const [blocks, updateBlocks] = useState([])
+  const [sectionSettings, updateSectionSettings] = useState(initialSettings)
 
   const addContent = (type, placeholder, id, html, index) => {
     const newBlock = {
@@ -126,6 +148,15 @@ const PageBuilder = ({ className }) => {
     updateBlocks(items)
   }
 
+  const updateSetting = (key, value) => {
+    updateSectionSettings(prevState => {
+      return {
+        ...prevState,
+        [key]: value
+      }
+    })
+  }
+
   useEffect(() => {
     const starterHeadline = {
       id: 'starterHeadline',
@@ -150,70 +181,81 @@ const PageBuilder = ({ className }) => {
     // updateBlocks([starterHeadline, starterText])
   }, [])
 
-  console.log(blocks)
-
   return (
     <>
-    <Wrapper className={className}>
-      <div style={{ margin: 'auto' }}>
-          {blocks.length > 0 ? (
-            <div>
-              <DragDropContext onDragEnd={handleOnDragEnd}>
-                <Droppable droppableId={'sectionContent'}>
-                  {(provided) => (
-                    <ul {...provided.droppableProps} ref={provided.innerRef}>
-                      {blocks.map((item, index) => {
-                        const Component = componentMap[item.type].component
-                        return (
-                          <Draggable key={item.id} draggableId={item.id} index={index}>
-                            {(provided, snapshot) => {
-                              const splitDragStyle = provided.draggableProps?.style?.transform?.split(', ')
-                              if (splitDragStyle) {
-                                provided.draggableProps.style.transform = 'translate(0px, ' + splitDragStyle[1]
-                              }
-                              return (
-                                <li
-                                  {...provided.draggableProps}
-                                  ref={provided.innerRef}
-                                  style={provided.draggableProps.style}
-                                >
-                                  <AddContentActions addContent={addContent} position={index} addBetween/>
-                                  <Component
-                                    {...item}
-                                    id={item.id}
-                                    tag={item.tag}
-                                    type={item.type}
-                                    placeholder={item.placeholder}
-                                    html={item.content}
-                                    settings={item?.settings}
-                                    updateBlock={updateBlock}
-                                    removeBlock={removeBlock}
-                                    dragProps={provided.dragHandleProps}
-                                    isDragging={snapshot.isDragging}
-                                  />
-                                </li>
-                              )
-                            }}
-                          </Draggable>
-                        )
-                      })}
-                      {provided.placeholder}
-                    </ul>
-                  )}
-                </Droppable>
-              </DragDropContext>
-              <AddContentActions addContent={addContent} addBetween/>
+    <Wrapper
+      className={className}
+      settings={sectionSettings}
+      hAlign={sectionSettings.contentPlacement.split('-')[0]}
+      vAlign={sectionSettings.contentPlacement.split('-')[1]}
+    >
+      <SectionSettings
+        settings={sectionSettings}
+        updateSetting={updateSetting}
+        id={'sectionId'}
+      />
+      <InnerWrapper
+        hAlign={sectionSettings.contentPlacement.split('-')[0]}
+        vAlign={sectionSettings.contentPlacement.split('-')[1]}
+      >
+        {blocks.length > 0 ? (
+          <div>
+            <DragDropContext onDragEnd={handleOnDragEnd}>
+              <Droppable droppableId={'sectionContent'}>
+                {(provided) => (
+                  <ul {...provided.droppableProps} ref={provided.innerRef}>
+                    {blocks.map((item, index) => {
+                      const Component = componentMap[item.type].component
+                      return (
+                        <Draggable key={item.id} draggableId={item.id} index={index}>
+                          {(provided, snapshot) => {
+                            const splitDragStyle = provided.draggableProps?.style?.transform?.split(', ')
+                            if (splitDragStyle) {
+                              provided.draggableProps.style.transform = 'translate(0px, ' + splitDragStyle[1]
+                            }
+                            return (
+                              <li
+                                {...provided.draggableProps}
+                                ref={provided.innerRef}
+                                style={provided.draggableProps.style}
+                              >
+                                <AddContentActions addContent={addContent} position={index} addBetween/>
+                                <Component
+                                  {...item}
+                                  id={item.id}
+                                  tag={item.tag}
+                                  type={item.type}
+                                  placeholder={item.placeholder}
+                                  html={item.content}
+                                  settings={item?.settings}
+                                  updateBlock={updateBlock}
+                                  removeBlock={removeBlock}
+                                  dragProps={provided.dragHandleProps}
+                                  isDragging={snapshot.isDragging}
+                                />
+                              </li>
+                            )
+                          }}
+                        </Draggable>
+                      )
+                    })}
+                    {provided.placeholder}
+                  </ul>
+                )}
+              </Droppable>
+            </DragDropContext>
+            <AddContentActions addContent={addContent} addBetween/>
+          </div>
+        ) : (
+          <div>
+            <h2 className='mb-2'>Add Content</h2>
+            <p className='small text-light-text-color mb-8'>Add text, image, or video.</p>
+            <div className="text-center">
+              <ContentMenu addContent={addContent} visible />
             </div>
-          ) : (
-            <div>
-              <h2 className='mb-2'>Add Content</h2>
-              <p className='small text-light-text-color mb-8'>Add text, image, or video.</p>
-              <div className="text-center">
-                <ContentMenu addContent={addContent} visible />
-              </div>
-            </div>
-          )}
-      </div>
+          </div>
+        )}
+      </InnerWrapper>
     </Wrapper>
 
     <HtmlPreview>
@@ -247,4 +289,4 @@ const PageBuilder = ({ className }) => {
   )
 }
 
-export default PageBuilder
+export default PageSection

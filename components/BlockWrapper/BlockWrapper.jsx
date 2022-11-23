@@ -5,6 +5,7 @@ import DragIcon from 'assets/drag-icon.svg'
 import Button from 'components/Button'
 import { MdDelete, MdClose } from 'react-icons/md'
 import { Resizable } from 're-resizable'
+import Card from 'components/Card'
 import SettingFontFamily from 'components/SettingFontFamily'
 import SettingFontSize from 'components/SettingFontSize'
 import SettingOpacity from 'components/SettingOpacity'
@@ -175,14 +176,9 @@ const ResizableItem = styled(Resizable)`
   }
 `
 
-const SettingsPanel = styled.div`
-  background: var(--bg-color);
-  border-radius: var(--base-border-radius);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, .2);
+const SettingsPanel = styled(Card)`
   width: 250px !important;
   min-height: 60px;
-  top: 0;
-  z-index: 10;
 `
 
 const BlockWrapper = ({
@@ -264,55 +260,59 @@ const BlockWrapper = ({
       </Wrapper>
 
       {settingsOpen && (
-        <SettingsPanel
-          // onMouseLeave={() => setSettingsOpen(false)}
+        <div
           ref={floating}
           style={{
+            zIndex: 10,
             position: strategy,
             top: y ?? 0,
             left: x ?? 0,
             width: 'max-content',
           }}
         >
-          <div className="flex justify-between items-center gap-x-3 py-3 pl-3 pr-2 border-b border-hr-color">
-            <span class='h6'>{type} Settings</span>
-            <Button
-              onClick={() => setSettingsOpen(false)}
-              icon={<MdClose size='18px' />}
-              size='tiny'
-              shape='circle'
-              setTheme='transparent'
-            />
-          </div>
-          <div>
-            {settings?.opacity && (
-              <div className="p-3">
-                <SettingOpacity
-                  setOpacity={setOpacity}
-                  settings={settings}
-                />
-              </div>
-            )}
-            {settings?.fontFamily && (
-              <SettingFontFamily
-                setFontFamily={setFontFamily}
-                setFontWeight={setFontWeight}
-                settings={settings}
+          <SettingsPanel
+            // onMouseLeave={() => setSettingsOpen(false)}
+          >
+            <div className="flex justify-between items-center gap-x-3 py-3 pl-3 pr-2 border-b border-hr-color">
+              <span class='h6'>{type} Settings</span>
+              <Button
+                onClick={() => setSettingsOpen(false)}
+                icon={<MdClose size='18px' />}
+                size='tiny'
+                shape='circle'
+                setTheme='transparent'
               />
-            )}
-            {settings?.fontSize && (
-              <div className="p-3">
-                <SettingFontSize
-                  setFontSize={setFontSize}
+            </div>
+            <div>
+              {settings?.opacity && (
+                <div className="p-3">
+                  <SettingOpacity
+                    setOpacity={setOpacity}
+                    settings={settings}
+                  />
+                </div>
+              )}
+              {settings?.fontFamily && (
+                <SettingFontFamily
+                  setFontFamily={setFontFamily}
+                  setFontWeight={setFontWeight}
                   settings={settings}
                 />
-              </div>
-            )}
-          </div>
-          <div className="border-t border-hr-color">
-            <Button setTheme='transparent' className='w-full hover:text-alert' icon={<MdDelete size='20px'/>} onClick={removeBlock}>Delete</Button>
-          </div>
-        </SettingsPanel>
+              )}
+              {settings?.fontSize && (
+                <div className="p-3">
+                  <SettingFontSize
+                    setFontSize={setFontSize}
+                    settings={settings}
+                  />
+                </div>
+              )}
+            </div>
+            <div className="border-t border-hr-color">
+              <Button setTheme='transparent' className='w-full hover:text-alert' icon={<MdDelete size='20px'/>} onClick={removeBlock}>Delete</Button>
+            </div>
+          </SettingsPanel>
+        </div>
       )}
     </>
   )
