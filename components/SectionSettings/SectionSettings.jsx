@@ -12,12 +12,20 @@ const Wrapper = styled.div`
   bottom: 0;
 `
 
+const SettingCard = styled(Card)`
+  width: 250px;
+`
+
 const RadioButtonGroup = styled.div`
+  --button-height: 30px;
   display: flex;
+  background: var(--light-grey);
+  padding: 4px;
+  border-radius: calc(var(--base-border-radius) + 4px);
   input:checked ~ {
     label {
       color: var(--text-color);
-      background: var(--light-grey);
+      background: var(--white);
     }
   }
   > div {
@@ -32,19 +40,24 @@ const RadioButtonGroup = styled.div`
     justify-content: center;
     padding: 0 10px;
     border-radius: var(--base-border-radius);
+    transition: color var(--md-speed) ease-in-out,
+                background var(--md-speed) ease-in-out;
+    &:hover {
+      color: var(--text-color);
+    }
   }
 `
 
 const RadioPlacementGroup = styled.div`
+  --button-height: 30px;
   display: flex;
   flex-wrap: wrap;
   background: var(--light-grey);
-  padding: 2px;
-  border-radius: calc(var(--base-border-radius) + 2px);
-  --button-height: 30px;
+  padding: 4px;
+  border-radius: calc(var(--base-border-radius) + 4px);
   input:checked ~ {
     label {
-      color: var(--text-color);
+      color: var(--main-color);
       background: var(--white);
     }
   }
@@ -60,6 +73,11 @@ const RadioPlacementGroup = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: var(--base-border-radius);
+    transition: color var(--md-speed) ease-in-out,
+                background var(--md-speed) ease-in-out;
+    &:hover {
+      color: var(--text-color);
+    }
   }
 `
 
@@ -83,43 +101,49 @@ const SectionSettings = ({ className, settings, updateSetting, id }) => {
   return (
     <Wrapper className={className}>
       <Button>Section Settings</Button>
-      <Card>
-        <RadioButtonGroup>
-          <div selected={'left' === settings.textAlignment}>
-            <input onChange={() => updateSetting('textAlignment', 'left')} className='hidden' type="radio" id='left' name="fonts" checked={'left' === settings.textAlignment} />
-            <label htmlFor='left' className='px-3 py-2'><FiAlignLeft size='24px' /></label>
-          </div>
-
-          <div selected={'center' === settings.textAlignment}>
-            <input onChange={() => updateSetting('textAlignment', 'center')} className='hidden' type="radio" id='center' name="fonts" checked={'center' === settings.textAlignment} />
-            <label htmlFor='center' className='px-3 py-2'><FiAlignCenter size='24px' /></label>
-          </div>
-          
-          <div selected={'right' === settings.textAlignment}>
-            <input onChange={() => updateSetting('textAlignment', 'right')} className='hidden' type="radio" id='right' name="fonts" checked={'right' === settings.textAlignment} />
-            <label htmlFor='right' className='px-3 py-2'><FiAlignRight size='24px' /></label>
-          </div>
-        </RadioButtonGroup>
-
-        <RadioPlacementGroup>
-          {placementOptions.map((item, index) => (
-            <div
-              selected={item === settings.contentPlacement}
-              key={'section-' + id + '-placement-' + index}
-            >
-              <input
-                onChange={() => updateSetting('contentPlacement', item)}
-                className='hidden'
-                type="radio"
-                id={item}
-                name="contentPlacement"
-                checked={item === settings.contentPlacement}
-              />
-              <label htmlFor={item}><FaCircle size='12px' /></label>
+      <SettingCard className='p-3 grid gap-6'>
+        <div>
+          <h6 className='text-left mb-2'>Content Placement</h6>
+          <RadioButtonGroup>
+            <div selected={'left' === settings.textAlignment}>
+              <input onChange={() => updateSetting('textAlignment', 'left')} className='hidden' type="radio" id='left' name="fonts" checked={'left' === settings.textAlignment} />
+              <label htmlFor='left' className='px-3 py-2'><FiAlignLeft size='24px' /></label>
             </div>
-          ))}
-        </RadioPlacementGroup>
-      </Card>
+
+            <div selected={'center' === settings.textAlignment}>
+              <input onChange={() => updateSetting('textAlignment', 'center')} className='hidden' type="radio" id='center' name="fonts" checked={'center' === settings.textAlignment} />
+              <label htmlFor='center' className='px-3 py-2'><FiAlignCenter size='24px' /></label>
+            </div>
+            
+            <div selected={'right' === settings.textAlignment}>
+              <input onChange={() => updateSetting('textAlignment', 'right')} className='hidden' type="radio" id='right' name="fonts" checked={'right' === settings.textAlignment} />
+              <label htmlFor='right' className='px-3 py-2'><FiAlignRight size='24px' /></label>
+            </div>
+          </RadioButtonGroup>
+        </div>
+
+        <div>
+          <h6 className='text-left mb-2'>Content Placement</h6>
+          <RadioPlacementGroup>
+            {placementOptions.map((item, index) => (
+              <div
+                selected={item === settings.contentPlacement}
+                key={'section-' + id + '-placement-' + index}
+              >
+                <input
+                  onChange={() => updateSetting('contentPlacement', item)}
+                  className='hidden'
+                  type="radio"
+                  id={item}
+                  name="contentPlacement"
+                  checked={item === settings.contentPlacement}
+                />
+                <label htmlFor={item}><FaCircle size='12px' /></label>
+              </div>
+            ))}
+          </RadioPlacementGroup>
+        </div>
+      </SettingCard>
     </Wrapper>
   )
 }
