@@ -21,7 +21,7 @@ const RadioButtonGroup = styled.div`
   display: flex;
   background: var(--light-grey);
   padding: 4px;
-  border-radius: calc(var(--base-border-radius) + 4px);
+  border-radius: var(--base-border-radius);
   input:checked ~ {
     label {
       color: var(--text-color);
@@ -39,7 +39,7 @@ const RadioButtonGroup = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0 10px;
-    border-radius: var(--base-border-radius);
+    border-radius: calc(var(--base-border-radius) - 4px);
     transition: color var(--md-speed) ease-in-out,
                 background var(--md-speed) ease-in-out;
     &:hover {
@@ -54,7 +54,7 @@ const RadioPlacementGroup = styled.div`
   flex-wrap: wrap;
   background: var(--light-grey);
   padding: 4px;
-  border-radius: calc(var(--base-border-radius) + 4px);
+  border-radius: var(--base-border-radius);
   input:checked ~ {
     label {
       color: var(--main-color);
@@ -72,7 +72,7 @@ const RadioPlacementGroup = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--base-border-radius);
+    border-radius: calc(var(--base-border-radius) - 4px);
     transition: color var(--md-speed) ease-in-out,
                 background var(--md-speed) ease-in-out;
     &:hover {

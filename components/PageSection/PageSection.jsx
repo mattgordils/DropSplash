@@ -250,7 +250,7 @@ const PageSection = ({ className }) => {
           <div>
             <h2 className='mb-2'>Add Content</h2>
             <p className='small text-light-text-color mb-8'>Add text, image, or video.</p>
-            <div className="text-center">
+            <div className="w-full">
               <ContentMenu addContent={addContent} visible />
             </div>
           </div>
